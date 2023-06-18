@@ -1,0 +1,24 @@
+
+/* switch lang */
+:where(.css-dev-only-do-not-override-15rg2km) .ant-switch.ant-switch-checked,
+.ant-switch {
+  background-color: #1a2442;
+}
+:where(
+    .css-dev-only-do-not-override-15rg2km
+  ).ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled),
+:where(.css-dev-only-do-not-override-15rg2km).ant-switch:hover:not(
+    .ant-switch-disabled
+  ) {
+  background: #f7a833;
+}
+.ant-drawer-header-title {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+}
+.ant-drawer-title {
+  display: flex;
+  justify-content: center;
+}
+/* //////////////////////////// */
