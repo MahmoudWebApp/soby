@@ -21,4 +21,13 @@
   display: flex;
   justify-content: center;
 }
+.ant-radio-wrapper:hover .ant-radio-inner{
+  border-color:#1A2442
+}
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner{
+  background-color:#1A2442
+}
+.swiper-pagination-bullet-active{
+  background: #f7a833 !important
+}
 /* //////////////////////////// */

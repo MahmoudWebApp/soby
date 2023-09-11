@@ -1,12 +1,17 @@
+import AboutAbout from "./AboutAbout";
+import AboutBrand from "./AboutBrand";
+import AboutPromise from "./AboutPromis";
+import MissionAndVision from "./MissonAndVision";
 
 
 const About = () => {
   return (
     <>
-  
-      <div className="text-center text-soby-gray-blue-gray mt-24 animate-[wiggle_1s_ease-in-out_infinite]">
-        Coming Soon
-      </div>
+      <AboutAbout />
+      <MissionAndVision />
+      <AboutBrand />
+      <AboutPromise />
+
     </>
   );
 };

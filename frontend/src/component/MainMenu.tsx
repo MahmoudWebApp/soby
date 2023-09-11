@@ -4,9 +4,10 @@ import { NavLink, useLocation } from "react-router-dom";
 interface IMainMenu {
     key: string;
     name: string;
-    url: string
+    url: string;
+
 }
-const MainMenu: React.FC<unknown> = () => {
+const MainMenu: React.FC<{ classesText: string }> = ({ classesText }) => {
     const location = useLocation();
     const { pathname } = location;
     const mainMenu: IMainMenu[] = [
@@ -30,11 +31,11 @@ const MainMenu: React.FC<unknown> = () => {
             name: `${t("Publications")}`,
             url: "/publications",
         },
-        {
-            key: "key_blog",
-            name: `${t("Blog")}`,
-            url: "/blog",
-        },
+        // {
+        //     key: "key_blog",
+        //     name: `${t("Blog")}`,
+        //     url: "/blog",
+        // },
         {
             key: "key_courses",
             name: `${t("Courses")}`,
@@ -52,10 +53,10 @@ const MainMenu: React.FC<unknown> = () => {
             <NavLink
                 to={item?.url}
                 key={item?.key}
-                className={`"xl:text-base/[19px] md:text-sm text-lg ${pathname === item?.url
+                className={` ${classesText} ${pathname === item?.url
                     ? "text-soby-yellow-light"
-                    : "text-soby-gray-dark-4"
-                    } text-soby-gray-dark-4 hover:text-soby-yellow-light  `}
+                    : "text-soby-gray-blue-gray"
+                    } text-soby-gray-blue-gray hover:text-soby-yellow-light  `}
             >
                 {item?.name}
             </NavLink>
