@@ -1,22 +1,12 @@
 import { t } from "i18next";
 import videoIcon from '../../assets/svg/icon-video.svg'
 import { SobyBigButton } from "../buttons";
-import { useState ,useEffect } from "react";
 
 const SliderContain: React.FC<unknown> = () => {
-  const [fontFamily, setFontFamily] = useState<string>(localStorage.getItem("lang") === "ar" ? "font-almarai" : "font-roboto");
-  const [dir, setDir] = useState(localStorage.getItem("lang") === "ar" ? "rtl" : "ltr")
-  useEffect(() => {
-    setFontFamily(localStorage.getItem("lang") === "ar" ? "font-almarai" : "font-roboto");
-    setDir(localStorage.getItem("lang") === "ar" ? "rtl" : "ltr")
-
-  }, [])
-  console.log("Font",fontFamily);
-  
   return (
     <div
-      dir={dir}
-      className={`flex flex-col  items-start md:gap-y-5 xl:gap-y-8 sm:gap-y-3 gap-y-2 w-full  ${fontFamily} animate-[spinner-grow_2s_ease-in-out]`}
+     
+      className={`flex flex-col  items-start md:gap-y-5 xl:gap-y-8 sm:gap-y-3 gap-y-2 w-full   animate-[spinner-grow_2s_ease-in-out]`}
     >
       <div className="px-3 py-1 md:px-10 md:py-3  bg-soby-blue-light-1 rounded-3xl">
         <h3 className="lg:text-base   text-soby-gray-blue-gray font-bold float-left sm:text-xs text-[.6rem]">

@@ -7,6 +7,8 @@ import menuIcon from "../assets/svg/menu.svg";
 import MainMenu from "./MainMenu";
 import SocialMenu from "./SocialMenu";
 import LangSwitcher from "./LangSwitcher";
+import { SobyButton } from "./buttons";
+import { t } from "i18next";
 const DrawerMenu = () => {
   const [open, setOpen] = useState(false);
 
@@ -35,16 +37,24 @@ const DrawerMenu = () => {
         open={open}
       >
         <div className="flex gap-y-2 items-center flex-col">
-          <MainMenu classesText={"xl:text-base  md:text-sm text-lg"} />
-          <div className="mt-3 p-3" style={{borderTop:"1px solid #1A2442"}}>
-          <LangSwitcher />
+          <MainMenu classesText={"text-lg"} />
+          <div className="mt-3 p-3" style={{ borderTop: "1px solid #1A2442" }}>
+            <LangSwitcher />
           </div>
-         
+
 
         </div>
-        <div className="flex gap-y-3  items-center flex-wrap px-10 mt-20">
+        <div className="md:hidden flex justify-center items-center  ">
+          <SobyButton
+            title={`${t("Hire me!")}`}
+            bgColor="bg-soby-yellow-light"
+            textColor="text-soby-light-1 "
+          />
+        </div>
+        <div className="md:hidden flex gap-y-1  items-center flex-wrap px-10 mt-20">
           <SocialMenu colorIcon={"blue"} />
         </div>
+
       </Drawer>
     </>
   );

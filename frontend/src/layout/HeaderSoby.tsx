@@ -8,8 +8,9 @@ import DrawerMenu from "../component/DrawerMenu";
 import { SobyButton } from "../component/buttons";
 import LangSwitcher from "../component/LangSwitcher";
 const HeaderSoby = () => {
+ 
   return (
-    <nav className="mx-auto xl:px-24 px-6 md:py-6 py-2">
+    <nav className="mx-auto xl:px-24 px-6 md:py-6 py-2 fixed bg-white shadow-sm z-[999] left-0 top-0 right-0">
       <div className="flex flex-1 items-center sm:items-stretch justify-between md:justify-around  md:flex-wrap">
         <div className="flex ">
           <NavLink to="/">
@@ -18,7 +19,7 @@ const HeaderSoby = () => {
         </div>
         <div className="hidden  lg:flex xl:gap-x-6 md:gap-x-3 items-center">
           <MainMenu classesText={"xl:text-base  md:text-sm text-lg"} />
-          <LangSwitcher/>
+          <LangSwitcher />
         </div>
         <div className="hidden  md:flex sm:gap-x-1 sm:items-center xl:ml-6 md:ml-0">
           <SocialMenu colorIcon={"blue"} />

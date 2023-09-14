@@ -2,7 +2,7 @@ import { t } from "i18next";
 import "video-react/dist/video-react.css";
 const AboutAbout = () => {
     return (
-        <div className=" lg:py-[80px] md:py-[60px] py-[40px] lg:px-28 px-6">
+        <div className=" lg:py-[80px] md:py-[60px] py-[40px] lg:px-28 px-6  md:mt-[96px] mt-[70px]  ">
             <div className="flex md:flex-row  lg:gap-12 gap-6 flex-col">
                 <div className="flex flex-col gap-y-3 md:w-1/2 w-full">
                     <h4 className="text-soby-yellow-light lg:text-5xl md:text-4xl text-3xl  font-semibold">
@@ -51,7 +51,7 @@ const AboutAbout = () => {
             </div>
 
             <div className="flex  flex-col lg:mt-0 mt-6 ">
-                <div className="lg:w-1/2 w-full flex  md:gap-x-12 gap-x-3">
+                <div className="lg:w-1/2 w-full flex sm:flex-row flex-col md:gap-x-12 gap-3">
                     <button className='rounded-3xl bg-soby-gray-blue-gray md:text-lg sm:text-sm xs:text-[.7rem] text-white px-6 py-3'
 
                     >

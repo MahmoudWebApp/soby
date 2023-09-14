@@ -1,8 +1,28 @@
+import Consultation from "../home/consultation/consultation"
+import TestimonialsHome from "../home/testimonials/TestimonialsHome"
+import CompaniesBrand from "./CompaniensBrand"
+import LandingPage from "./LandingPage"
+import StroyBrand from "./StoryBrand"
+import ContentLessonsBrand from "./contentLessonsBrand/ContentLessonsBrand"
+import InvestmentBrand from "./investmentBrand/InvestmentBrand"
+import StepsBrand from "./stepsBrand/StepsBrand"
+import SufferBrand from "./sufferBrand/SufferBrand"
+import TrainersBrand from "./trainersBrand/TrainersBrand"
 
 const Branding = () => {
     return (
-
-        <div className="text-center text-soby-gray-blue-gray mt-24  animate-[wiggle_1s_ease-in-out_infinite]">Branding Page Coming Soon</div>
+        <>
+            <LandingPage />
+            <StroyBrand />
+            <SufferBrand />
+            <StepsBrand />
+            <TestimonialsHome />
+            <CompaniesBrand />
+            <TrainersBrand />
+            <ContentLessonsBrand />
+            <Consultation />
+            <InvestmentBrand />
+        </>
     )
 }
 

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/svg/soby logo.svg";
 import MainMenu from "../component/MainMenu";
 import SocialMenu from "../component/SocialMenu";
+import MainFooterMenu from "../component/MainFooterMenu";
 const FooterSoby = () => {
     return (
         <div className="grid grid-row-2">
@@ -23,7 +24,7 @@ const FooterSoby = () => {
                             QUICK LINKS
                         </h4>
                         <div className=" flex flex-col gap-y-3">
-                            <MainMenu classesText={"text-lg"} />
+                            <MainFooterMenu classesText={"text-lg"} />
                         </div>
                     </div>
                     <div className="flex flex-col gap-y-3">

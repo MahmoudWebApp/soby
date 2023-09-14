@@ -1,16 +1,13 @@
 
 import { t } from "i18next";
 import { NavLink, useLocation } from "react-router-dom";
-import ItemDropdown from "./dropdown/ItemDropdown";
-import { FormOutlined, BookOutlined } from '@ant-design/icons';
 interface IMainMenu {
     key: string;
-    name: string | JSX.Element;
+    name: string;
     url: string;
 
 }
-const MainMenu: React.FC<{ classesText: string }> = ({ classesText }) => {
-
+const MainFooterMenu: React.FC<{ classesText: string }> = ({ classesText }) => {
     const location = useLocation();
     const { pathname } = location;
     const mainMenu: IMainMenu[] = [
@@ -26,23 +23,13 @@ const MainMenu: React.FC<{ classesText: string }> = ({ classesText }) => {
         },
         {
             key: "key_training",
-            name: <ItemDropdown itemsData={[
-                { id: '1', name: "Train 1", icon: <FormOutlined /> },
-                { id: '2', name: "Train 2", icon: <FormOutlined /> },
-                { id: '3', name: "Train 3", icon: <FormOutlined /> },
-                { id: '4', name: "Train 4", icon: <FormOutlined /> },
-            ]} name={`${t("Training")}`} baseUrl="/training" />,
-            url: "",
+            name: `${t("Training")}`,
+            url: "/training",
         },
         {
             key: "key_publications",
-            name: <ItemDropdown itemsData={[
-                { id: '1', name: "Book 1", icon: <BookOutlined /> },
-                { id: '2', name: "Book 2", icon: <BookOutlined /> },
-                { id: '3', name: "Book 3", icon: <BookOutlined /> },
-                { id: '4', name: "Book 4", icon: <BookOutlined /> },
-            ]} name={`${t("Publications")}`} baseUrl="/publications" />,
-            url: "",
+            name: `${t("Publications")}`,
+            url: "/publications",
         },
         {
             key: "key_blog",
@@ -79,4 +66,4 @@ const MainMenu: React.FC<{ classesText: string }> = ({ classesText }) => {
 
 };
 
-export default MainMenu;
+export default MainFooterMenu;

@@ -17,11 +17,7 @@ function App() {
         dir={dir === "ar" ? "rtl" : "ltr"}
         className={`${classLang}  bg-soby-light-2`}
       >
-        <HeaderSoby />
-        <div className=" min-h-screen    ">
-          <Router />
-        </div>
-        <FooterSoby />
+        <Router />
       </div>
     </div>
   );
