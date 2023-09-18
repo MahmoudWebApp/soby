@@ -6,7 +6,7 @@ import BannerHome from "./BannerHome";
 import Companies from "./companies/Companies";
 import TestimonialsHome from "./testimonials/TestimonialsHome";
 import Consultation from "./consultation/consultation";
-
+import { InlineWidget } from "react-calendly";
 
 
 const Home = () => {
@@ -19,6 +19,7 @@ const Home = () => {
       <Companies />
       <Networks />
       <Consultation/>
+      <InlineWidget url="https://calendly.com/asksoby/45min" />
     </div>
   );
 };

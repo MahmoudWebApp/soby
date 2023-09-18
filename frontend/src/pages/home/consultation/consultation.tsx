@@ -2,6 +2,7 @@ import { t } from "i18next"
 import ConsultationForm from "./ConsultationForm"
 
 
+
 const Consultation = () => {
     return (
         <div className="flex md:flex-row  gap-12 flex-col lg:py-[80px] md:py-[60px] py-[40px] lg:px-28 px-6 bg-soby-light-2">
@@ -40,8 +41,9 @@ const Consultation = () => {
 
                     </ul>
                 </div>
-                <ConsultationForm/>
+                <ConsultationForm />
             </div>
+
 
         </div>
     )

@@ -1,0 +1,24 @@
+.admin-model .ant-modal-title {
+  text-decoration: solid;
+  font-weight: 700;
+  font-size: 16px;
+}
+.admin-model .ant-input-number {
+  width: 100%;
+}
+.admin-model .ant-input-number-affix-wrapper {
+  width: initial;
+  padding-inline-start: initial;
+}
+.add-btn.ant-btn:hover {
+  color: aliceblue !important;
+  border: none !important;
+}
+.admin-model .ant-btn:hover {
+  color: inherit!important;
+  border: inherit !important;
+}
+.app-admin-layout h2.ant-typography {
+  text-align: center;
+  margin-top: 0.5em;
+}

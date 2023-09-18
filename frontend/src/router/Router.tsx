@@ -4,7 +4,8 @@ import AnonymousRoute from "./nonymousRoute";
 import WebsiteLayout from "../layout/WebsiteLayout";
 import AdminRoute from "./adminRoute";
 import AdminLayout from "../layout/AdminLayout";
-import { StartPage } from "../admin";
+import { BannerHomeMng, CompaniesHomeMng, HomeAboutMng, NetworksHomeMng, SliderHeroMng, StartPage, TestimonialsMng } from "../admin";
+
 
 const index = () => {
   return (
@@ -30,6 +31,12 @@ const index = () => {
         </AdminRoute>
       }>
         <Route path="/admin" element={<StartPage />} />
+        <Route path="/admin/home/slider-hero" element={<SliderHeroMng />} />
+        <Route path="/admin/home/about" element={<HomeAboutMng />} />
+        <Route path="/admin/home/testimonials" element={<TestimonialsMng />} />
+        <Route path="/admin/home/banner" element={<BannerHomeMng />} />
+        <Route path="/admin/home/companies" element={<CompaniesHomeMng />} />
+        <Route path="/admin/home/networks" element={<NetworksHomeMng />} />
       </Route>
     </Routes>
   );

@@ -1,17 +1,5 @@
-
 /* switch lang */
-:where(.css-dev-only-do-not-override-15rg2km) .ant-switch.ant-switch-checked,
-.ant-switch {
-  background-color: #1a2442;
-}
-:where(
-    .css-dev-only-do-not-override-15rg2km
-  ).ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled),
-:where(.css-dev-only-do-not-override-15rg2km).ant-switch:hover:not(
-    .ant-switch-disabled
-  ) {
-  background: #f7a833;
-}
+
 .ant-drawer-header-title {
   display: flex;
   justify-content: space-around;
@@ -21,13 +9,29 @@
   display: flex;
   justify-content: center;
 }
-.ant-radio-wrapper:hover .ant-radio-inner{
-  border-color:#1A2442
+.ant-radio-wrapper:hover .ant-radio-inner {
+  border-color: #1a2442;
 }
-.ant-radio-wrapper .ant-radio-checked .ant-radio-inner{
-  background-color:#1A2442
+.ant-radio-wrapper .ant-radio-checked .ant-radio-inner {
+  background-color: #1a2442;
 }
-.swiper-pagination-bullet-active{
-  background: #f7a833 !important
+.swiper-pagination-bullet-active {
+  background: #f7a833 !important;
 }
+.admin-management .ant-table tr > th {
+  color: #1a2442;
+  text-align: center;
+  background-color:  #E6E6E6;
+  font-size: 0.9rem;
+  padding: 0.3rem;
+  text-transform: capitalize;
+}
+.admin-management .ant-table tr > td {
+  text-align: center;
+}
+.admin-management .ant-btn:hover {
+  color: inherit !important;
+  border: inherit !important;
+}
+
 /* //////////////////////////// */

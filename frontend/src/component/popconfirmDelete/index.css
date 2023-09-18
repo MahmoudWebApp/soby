@@ -1,0 +1,7 @@
+ .btn-ok{
+    background-color: #1A2442 !important;
+}
+.btn-cancel:hover{
+    color: #1A2442 !important;
+    border-color: #1A2442 !important;
+}

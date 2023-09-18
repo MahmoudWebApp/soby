@@ -22,42 +22,42 @@ export const socialMenuIcon = [
     {
         key: "key_youtube",
         icon: youtubeIcon,
-        url: "/",
+        url: "https://www.youtube.com/@asksoby",
     },
     {
         key: "key_insta",
         icon: instaIcon,
-        url: "/",
+        url: "https://www.instagram.com/asksoby/",
     },
     {
         key: "key_tiktok",
         icon: tiktokIcon,
-        url: "/",
+        url: "https://www.tiktok.com/@asksoby",
     },
     {
         key: "key_telegram",
         icon: telegramIcon,
-        url: "/",
+        url: "https://t.me/asksoby",
     },
     {
         key: "key_whatsup",
         icon: whatsupIcon,
-        url: "/",
+        url: "https://wa.me/+971556766748",
     },
     {
         key: "key_linkend",
         icon: linkendIcon,
-        url: "/",
+        url: "www.linkedin.com/in/asksoby ",
     },
     {
         key: "key_facebook",
         icon: facebookIcon,
-        url: "/",
+        url: "https://www.facebook.com/asksoby",
     },
     {
         key: "key_twitter",
         icon: twitterIcon,
-        url: "/",
+        url: "https://twitter.com/asksoby",
     },
 
 ];
@@ -65,42 +65,42 @@ export const socialMenuIconYellow = [
     {
         key: "key_youtube",
         icon: youtubeIconYellow,
-        url: "/",
+        url: "https://www.youtube.com/@asksoby",
     },
     {
         key: "key_insta",
         icon: instaIconYellow,
-        url: "/",
+        url: "https://www.instagram.com/asksoby/",
     },
     {
         key: "key_tiktok",
         icon: tiktokIconYellow,
-        url: "/",
+        url: "https://www.tiktok.com/@asksoby",
     },
     {
         key: "key_telegram",
         icon: telegramIconYellow,
-        url: "/",
+        url: "https://t.me/asksoby",
     },
     {
         key: "key_whatsup",
         icon: whatsupIconYellow,
-        url: "/",
+        url: "https://wa.me/+971556766748",
     },
     {
         key: "key_linkend",
         icon: linkendIconYellow,
-        url: "/",
+        url: "www.linkedin.com/in/asksoby ",
     },
     {
         key: "key_facebook",
         icon: facebookIconYellow,
-        url: "/",
+        url: "https://www.facebook.com/asksoby",
     },
     {
         key: "key_twitter",
         icon: twitterIconYellow,
-        url: "/",
+        url: "https://twitter.com/asksoby",
     },
 
 ];

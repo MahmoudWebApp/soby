@@ -4,9 +4,16 @@ const AboutHome = () => {
     return (
         <div className="flex md:flex-row  lg:gap-12 gap-6 flex-col lg:py-[80px] md:py-[60px] py-[40px] lg:px-28 px-6">
             <div className="md:w-1/2 w-full flex justify-center">
-                <video controls controlsList=" timeline volume"
-                    src={''}
-                    className="w-full lg:h-[392px] h-auto md:rounded-3xl rounded-lg" />
+                {/* <video controls controlsList=" timeline volume"
+                    src={'https://youtu.be/h07Q9rIWaLg'}
+                    className="w-full lg:h-[392px] h-auto md:rounded-3xl rounded-lg" /> */}
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/h07Q9rIWaLg?si=BaZ5DI0qMSG5_3_7"
+                    title="YouTube video player" frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen>
+
+                </iframe>
             </div>
             <div className="flex flex-col gap-y-3 md:w-1/2 w-full">
                 <h4 className="text-soby-yellow-light lg:text-5xl md:text-4xl text-3xl  font-semibold">
