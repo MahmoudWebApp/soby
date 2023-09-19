@@ -112,26 +112,26 @@ const TestimonialsMng = () => {
                                 <div className="grid grid-row-2 gap-y-6">
                                     <div className="grid grid-cols-2 gap-x-6">
                                         <div className="flex flex-col ">
-                                            <Form.Item label="Name English" name="name_ar"
+                                            <Form.Item label="Name English" name="name_en"
                                                 rules={RulesName({ name: `Name English`, countChar: 50 })}
 
                                             >
                                                 <Input />
                                             </Form.Item>
-                                            <Form.Item label="Name Arabic" name="name_en"
+                                            <Form.Item label="Name Arabic" name="name_ar"
                                                 rules={RulesName({ name: `Name Arabic`, countChar: 50 })}
 
                                             >
                                                 <Input />
                                             </Form.Item>
 
-                                            <Form.Item label="Position English" name="position_ar"
+                                            <Form.Item label="Position English" name="position_en"
                                                 rules={RulesName({ name: `Position English`, countChar: 50 })}
 
                                             >
                                                 <Input />
                                             </Form.Item>
-                                            <Form.Item label="Position Arabic" name="position_en"
+                                            <Form.Item label="Position Arabic" name="position_ar"
                                                 rules={RulesName({ name: `Position Arabic`, countChar: 50 })}
 
                                             >

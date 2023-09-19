@@ -8,20 +8,35 @@ import { t } from "i18next";
 
 import AddEditModal from "../../../component/addEditModal/AddEditModal";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import TitlePageAdmin from "../../../component/TitlePageAdmin";
 import CompaniesHomeTable from "./CompaniesHomeTable";
+import { useAddCompanyMutation, useGetAllCompaniesQuery } from "../../../redux/api/homePageApi/companiesHomeApi";
 
 
 
 
 
 const CompaniesHomeMng = () => {
+    const { companies } = useGetAllCompaniesQuery<{ companies: any[] }>(undefined, {
+        selectFromResult: ({ data }) => ({
+            companies: data?.companies ?? [],
+        }),
+    });
+    const [addCompany, { isSuccess, isLoading }] = useAddCompanyMutation();
     const [imageFile, setImageFile] = useState<any>();
-    const [formCompayIconAdd] = Form.useForm();
+    const [formCompanyIconAdd] = Form.useForm();
     const [fileList, setFileList] = useState<UploadFile[]>([]);
     const [isModalVisible, setIsModalVisible] = useState(false)
+    useEffect(() => {
+        if (isSuccess) {
+            formCompanyIconAdd.resetFields()
+            setFileList([]);
+            setImageFile('')
+            setIsModalVisible(false)
+        }
+    }, [formCompanyIconAdd, isSuccess])
     const propsImage: UploadProps = {
         onChange(info) {
             setFileList(info.fileList);
@@ -50,12 +65,11 @@ const CompaniesHomeMng = () => {
 
     const onFinish = async (values: any) => {
         try {
-            await formCompayIconAdd.validateFields();
+            await formCompanyIconAdd.validateFields();
             console.log(values);
-
-            // const formData = new FormData();
-            // formData.append("avatar", imageFile);
-
+            const formData = new FormData();
+            formData.append("image", imageFile);
+            await addCompany(formData)
 
         } catch (e) {
             console.log("onEditRow ", e);
@@ -72,12 +86,12 @@ const CompaniesHomeMng = () => {
                         Add Company Icon
                     </button>}
                     title={" Add Company Icon"}
-                    width={"800px"}
+                    width={"400px"}
                     isModalVisible={isModalVisible}
                     setIsModalVisible={setIsModalVisible}
 
                 >
-                    <Form layout="vertical" form={formCompayIconAdd}
+                    <Form layout="vertical" form={formCompanyIconAdd}
                         name="add-company"
                         onFinish={onFinish}
                         className="form-add-student-assessment"
@@ -94,20 +108,24 @@ const CompaniesHomeMng = () => {
 
                         <Space className="flex  justify-around">
                             <Button key="back" onClick={() => {
-                                formCompayIconAdd.resetFields()
+                                formCompanyIconAdd.resetFields()
                                 setFileList([]);
                                 setImageFile('')
                                 setIsModalVisible(false)
                             }} className="bg-soby-yellow-light text-white">
                                 {`${t("Cancel")}`}
                             </Button>,
-                            <Button key="submit" htmlType="submit" className="bg-soby-gray-blue-gray text-white">
+                            <Button key="submit" htmlType="submit" className="bg-soby-gray-blue-gray text-white" loading={isLoading}>
                                 {`${t("Save & Send")}`}
                             </Button>
                         </Space>
                     </Form>
                 </AddEditModal >
-                <CompaniesHomeTable companiesData={[1]} />
+                <CompaniesHomeTable companiesData={companies?.map(c => {
+                    return {
+                        ...c, key: `${c.id}-key`
+                    }
+                })} />
             </div>
 
         </div>

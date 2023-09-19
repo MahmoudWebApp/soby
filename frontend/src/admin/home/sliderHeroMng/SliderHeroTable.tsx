@@ -21,7 +21,7 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
             dataIndex: "title_en",
             width: "10%",
             render: (text: any) => {
-                return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
+                return <><h3 className='text-word-dark text-sm'>{text}</h3></>;
             },
         },
         {
@@ -29,7 +29,7 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
             dataIndex: "title_ar",
             width: "10%",
             render: (text: any) => {
-                return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
+                return <><h3 className='text-word-dark text-sm'>{text}</h3></>;
             },
         },
         {
@@ -37,7 +37,7 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
             dataIndex: "subtitle_en",
             width: "10%",
             render: (text: any) => {
-                return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
+                return <><h3 className='text-word-dark text-sm'>{text}</h3></>;
             },
         },
         {
@@ -45,7 +45,7 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
             dataIndex: "subtitle_ar",
             width: "10%",
             render: (text: any) => {
-                return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
+                return <><h3 className='text-word-dark text-sm'>{text}</h3></>;
             },
         },
         {
@@ -53,38 +53,38 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
             dataIndex: "profile_link",
             width: "5%",
             render: (text: any) => {
-                return <>{text ? <Tag color='green'>Have Url</Tag> : <Tag color='red'>No Have Url</Tag>}</>;
+                return <>{text ? <Tag color='green' className='text-xs'>Have Url</Tag> : <Tag color='red' className='text-xs'>No Have Url</Tag>}</>;
             },
         },
         {
             title: <TextEnAr t1={'Videos'} t2={'Link'} />,
             dataIndex: "videos_link",
-               width: "5%",
+            width: "5%",
             render: (text: any) => {
-                return <>{text ? <Tag color='green'>Have Url</Tag> : <Tag color='red'>No Have Url</Tag>}</>;
+                return <>{text ? <Tag color='green' className='text-xs'>Have Url</Tag> : <Tag color='red' className='text-xs'>No Have Url</Tag>}</>;
             },
         },
         {
             title: <TextEnAr t1={'Brochure'} t2={'Link'} />,
             dataIndex: "brochure",
-               width: "5%",
+            width: "5%",
             render: (text: any) => {
-                return <>{text ? <Tag color='green'>Have Url</Tag> : <Tag color='red'>No Have Url</Tag>}</>;
+                return <>{text ? <Tag color='green' className='text-xs'>Have Url</Tag> : <Tag color='red' className='text-xs'>No Have Url</Tag>}</>;
             },
         },
         {
             title: <TextEnAr t1={'Button'} t2={'Link'} />,
             dataIndex: "link",
-               width: "5%",
+            width: "5%",
             render: (text: any) => {
-                return <>{text ? <Tag color='green'>Have Url</Tag> : <Tag color='red'>No Have Url</Tag>}</>;
+                return <>{text ? <Tag color='green' className='text-xs'>Have Url</Tag> : <Tag color='red' className='text-xs'>No Have Url</Tag>}</>;
             },
         },
         {
             title: "Action",
             dataIndex: "",
             width: "10%",
-            render: (record:any) => {
+            render: (record: any) => {
                 return <Space className="flex flex-col justify-center gap-y-3">
                     <EditSliderHeroModal />
                     <DeleteButton onClick={async () => {

@@ -152,7 +152,7 @@ const HomeAboutMng = () => {
                                                     ]}
                                                     className="w-[47%] mb-0"
                                                 >
-                                                    <Input.TextArea placeholder={`${t("Content English")}`} />
+                                                    <Input.TextArea placeholder={`${t("Content English")}`} autoSize />
                                                 </Form.Item>
                                                 <Form.Item
                                                     {...restField}
@@ -162,7 +162,7 @@ const HomeAboutMng = () => {
                                                     ]}
                                                     className="w-[47%] mb-0"
                                                 >
-                                                    <Input.TextArea placeholder={`${t("Content Arabic")}`} dir="rtl"/>
+                                                    <Input.TextArea placeholder={`${t("Content Arabic")}`} dir="rtl" autoSize/>
                                                 </Form.Item>
                                                 <MinusCircleOutlined onClick={() => remove(name)} />
                                             </div>

@@ -1,18 +1,21 @@
 import { Space, Table, Tag } from 'antd';
 import TextEnAr from '../../../component/TextEnAr';
-import DeleteButton from '../../../component/DeleteButton';
 import EditNetworksHomeModal from './EditNetworkHomeModal';
+import { useDeleteNetworkMutation } from '../../../redux/api/homePageApi/networksHomeApi';
+import PopconfirmDelete from '../../../component/popconfirmDelete/PopconfirmDelete';
 
 
 
 
 const NetworksHomeTable: React.FC<{ networksData: any[] }> = (props) => {
+const [deleteNetwork, { isLoading }] = useDeleteNetworkMutation();
+
     const columns: any[] = [
         {
             title: "Icon",
-            dataIndex: "image",
+            dataIndex: "icon",
             render: (text: any) => {
-                return <img src={text} className='w-full ' alt='' />;
+                return <img src={text} className='w-[50px]  mx-auto' alt='' />;
             },
         },
         {
@@ -59,15 +62,15 @@ const NetworksHomeTable: React.FC<{ networksData: any[] }> = (props) => {
             render: (record: any) => {
                 return <Space className="flex flex-col justify-center gap-y-3">
                     <EditNetworksHomeModal networkData={record} />
-                    <DeleteButton onClick={async () => {
+                    <PopconfirmDelete onConfirm={async () => {
                         try {
-                            console.log(record?.id);
+                            await deleteNetwork({ network_id: record?.id })
                         } catch (err) {
                             console.log(err);
 
                         }
 
-                    }} />
+                    }} title={'Delete Network'} isLoading={isLoading} />
 
 
                 </Space>

@@ -2,30 +2,43 @@ import {
 
     Button,
     Form,
-    Input, Space, Upload, UploadFile, UploadProps
+    Input, Space, Upload, UploadFile, UploadProps, message
 } from "antd";
 import { t } from "i18next";
 
 import AddEditModal from "../../../component/addEditModal/AddEditModal";
-import { RulesName } from "../../../utils/RulesValidation";
-import { useState } from "react";
+import { RulesName, validateFileType } from "../../../utils/RulesValidation";
+import { useEffect, useState } from "react";
 
 import TitlePageAdmin from "../../../component/TitlePageAdmin";
 import NetworksHomeTable from "./NetworkHomeTable";
+import { useAddNetworkMutation, useGetAllNetworksQuery } from "../../../redux/api/homePageApi/networksHomeApi";
+import { INetworksProps } from "../../../models/Networks.model";
 
 
 
 
 const NetworksHomeMng = () => {
+    const { networks } = useGetAllNetworksQuery<{ networks: INetworksProps[] }>(undefined, {
+        selectFromResult: ({ data }) => ({
+            networks: data?.networks ?? [],
+        }),
+    });
+    const [addNetwork, { isSuccess, isLoading }] = useAddNetworkMutation();
     const [imageFile, setImageFile] = useState<any>();
     const [formNetworksHomeAdd] = Form.useForm();
     const [fileList, setFileList] = useState<UploadFile[]>([]);
     const [isModalVisible, setIsModalVisible] = useState(false)
+    useEffect(() => {
+        if (isSuccess) {
+            formNetworksHomeAdd.resetFields()
+            setFileList([]);
+            setImageFile('')
+            setIsModalVisible(false)
+        }
+    }, [formNetworksHomeAdd, isSuccess])
+
     const propsImage: UploadProps = {
-        onChange(info) {
-            setFileList(info.fileList);
-            setImageFile(info.file)
-        },
         onRemove: file => {
             const index = fileList.indexOf(file);
             const newFileList = fileList.slice();
@@ -33,7 +46,16 @@ const NetworksHomeMng = () => {
             setFileList(newFileList);
         },
         beforeUpload: file => {
-            setFileList([...fileList, file]);
+            const isAllowedType =
+                validateFileType(file, "image/png") ||
+                validateFileType(file, "image/svg+xml");
+            if (!isAllowedType) {
+                setFileList((state) => [...state]);
+                message.error(`${file.name} is not Icon file`);
+                return false;
+            }
+            setFileList([file]);
+            setImageFile(file)
             return false;
         },
         fileList,
@@ -50,11 +72,15 @@ const NetworksHomeMng = () => {
     const onFinish = async (values: any) => {
         try {
             await formNetworksHomeAdd.validateFields();
-            console.log(values);
 
             const formData = new FormData();
-            formData.append("avatar", imageFile);
-
+            formData.append("icon", imageFile);
+            formData.append("title_ar", values?.title_ar);
+            formData.append("title_en", values?.title_en);
+            formData.append("content_ar", values?.content_ar);
+            formData.append("content_en", values?.content_en);
+            formData.append("link", values?.link);
+            await addNetwork(formData)
 
         } catch (e) {
             console.log("onEditRow ", e);
@@ -79,7 +105,7 @@ const NetworksHomeMng = () => {
 
                     >
                         <Form layout="vertical" form={formNetworksHomeAdd}
-                            name="add-hero"
+                            name="add-network"
                             onFinish={onFinish}
                             className="form-add-student-assessment"
                         >
@@ -112,7 +138,7 @@ const NetworksHomeMng = () => {
                                             rules={RulesName({ name: `The Field`, countChar: 1024 })}
 
                                         >
-                                            <Input />
+                                            <Input.TextArea />
                                         </Form.Item>
                                         <Form.Item label="Description English" name="content_en"
                                             rules={RulesName({ name: `The Field`, countChar: 1500 })}
@@ -142,13 +168,19 @@ const NetworksHomeMng = () => {
                                 }} className="bg-soby-yellow-light text-white">
                                     {`${t("Cancel")}`}
                                 </Button>,
-                                <Button key="submit" htmlType="submit" className="bg-soby-gray-blue-gray text-white">
+                                <Button key="submit" htmlType="submit" className="bg-soby-gray-blue-gray text-white"
+                                    loading={isLoading}
+                                >
                                     {`${t("Save & Send")}`}
                                 </Button>
                             </Space>
                         </Form>
                     </AddEditModal >
-                    <NetworksHomeTable networksData={[1]} />
+                    <NetworksHomeTable networksData={networks?.map(n => {
+                        return {
+                            ...n, key: `${n?.id}-key`
+                        }
+                    })} />
                 </div>
 
             </div>

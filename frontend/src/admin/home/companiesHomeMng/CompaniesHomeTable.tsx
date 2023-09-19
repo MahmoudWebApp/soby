@@ -1,5 +1,7 @@
-import { Avatar, Space, Table } from 'antd';
-import DeleteButton from '../../../component/DeleteButton';
+import { Space, Table } from 'antd';
+
+import PopconfirmDelete from '../../../component/popconfirmDelete/PopconfirmDelete';
+import { useDeleteCompanyMutation } from '../../../redux/api/homePageApi/companiesHomeApi';
 
 
 
@@ -7,12 +9,13 @@ import DeleteButton from '../../../component/DeleteButton';
 
 
 const CompaniesHomeTable: React.FC<{ companiesData: any[] }> = (props) => {
+    const [deleteCompany, { isLoading }] = useDeleteCompanyMutation();
     const columns: any[] = [
         {
-            title: "icon",
+            title: "Icon",
             dataIndex: "image",
             render: (text: any) => {
-                return <img src={text} className='w-full ' alt='icon'/>;
+                return <img src={text} className='w-[50px] mx-auto' alt='icon' />;
             },
         },
         {
@@ -22,15 +25,15 @@ const CompaniesHomeTable: React.FC<{ companiesData: any[] }> = (props) => {
             render: (record: any) => {
                 return <Space className="flex  justify-center gap-x-3">
 
-                    <DeleteButton onClick={async () => {
+                    <PopconfirmDelete onConfirm={async () => {
                         try {
-                            console.log(record?.id);
+                            await deleteCompany({ network_id: record?.id })
                         } catch (err) {
                             console.log(err);
 
                         }
 
-                    }} />
+                    }} title={'Delete Network'} isLoading={isLoading} />
 
                 </Space>
             }

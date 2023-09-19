@@ -1,34 +1,36 @@
 import { Space, Table } from 'antd';
-import DeleteButton from '../../../component/DeleteButton';
+import PopconfirmDelete from '../../../component/popconfirmDelete/PopconfirmDelete';
+import { useDeleteTestimonialVideoMutation } from '../../../redux/api/homePageApi/testimoialsVideos';
 
 
 
 
 
 const TestimonialsVideosTable: React.FC<{ testimonialsVideosData: any[] }> = (props) => {
+    const [deleteTestimonialVideo, { isLoading }] = useDeleteTestimonialVideoMutation();
     const columns: any[] = [
         {
             title: "Video",
-            dataIndex: "video_url",
+            dataIndex: "video_link",
             render: (text: any) => {
-                return <><p className='text-word-dark text-sm'>{text}</p></>;
+                return <><p className='text-word-dark text-xs'>{text}</p></>;
             },
         },
         {
             title: "Action",
             dataIndex: "",
             width: "20%",
-            render: (record:any) => {
+            render: (record: any) => {
                 return <Space className="flex  justify-center gap-x-3">
-                    <DeleteButton onClick={async () => {
+                    <PopconfirmDelete onConfirm={async () => {
                         try {
-                            console.log(record?.id);
+                            await deleteTestimonialVideo({ testimonialVideo_id: record?.id })
                         } catch (err) {
                             console.log(err);
 
                         }
 
-                    }} />
+                    }} title={'Delete Testimonial Video Link'} isLoading={isLoading} />
 
 
                 </Space>

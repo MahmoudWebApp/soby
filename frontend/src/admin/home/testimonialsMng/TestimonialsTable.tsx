@@ -22,42 +22,42 @@ const TestimonialsTable: React.FC<{ testimonialsData: any[] }> = (props) => {
             title: <TextEnAr t1={'Name'} t2={'English'} />,
             dataIndex: "name_en",
             render: (text: any) => {
-                return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
+                return <><h3 className='text-word-dark text-sm'>{text}</h3></>;
             },
         },
         {
             title: <TextEnAr t1={'Name'} t2={'Arabic'} />,
             dataIndex: "name_ar",
             render: (text: any) => {
-                return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
+                return <><h3 className='text-word-dark text-sm'>{text}</h3></>;
             },
         },
         {
             title: <TextEnAr t1={'Position'} t2={'English'} />,
             dataIndex: "position_en",
             render: (text: any) => {
-                return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
+                return <><h3 className='text-word-dark text-sm'>{text}</h3></>;
             },
         },
         {
             title: <TextEnAr t1={'Position'} t2={'Arabic'} />,
             dataIndex: "position_ar",
             render: (text: any) => {
-                return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
+                return <><h3 className='text-word-dark text-sm'>{text}</h3></>;
             },
         },
         {
             title: <TextEnAr t1={'Description'} t2={'English'} />,
             dataIndex: "content_en",
             render: (text: any) => {
-                return <><p className='text-word-dark text-sm'>{text}</p></>;
+                return <><p className='text-word-dark text-xs'>{text}</p></>;
             },
         },
         {
             title: <TextEnAr t1={'Description'} t2={'Arabic'} />,
             dataIndex: "content_ar",
             render: (text: any) => {
-                return <><p className='text-word-dark text-sm'>{text}</p></>;
+                return <><p className='text-word-dark text-xs'>{text}</p></>;
             },
         },
         {

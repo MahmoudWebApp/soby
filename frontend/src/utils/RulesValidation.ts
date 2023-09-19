@@ -1,3 +1,4 @@
+import { UploadFile } from "antd";
 import { t } from "i18next";
 
 export const RulesName = (props: { name: string, countChar: number }) => {
@@ -19,7 +20,7 @@ export const RulesEmail = () => {
     const rules: any[] = [
         {
             required: true,
-            message: `${t( "E-Mail is required*")}`
+            message: `${t("E-Mail is required*")}`
         },
         {
             pattern: (/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i),
@@ -48,4 +49,16 @@ export const RulesPassword = (props: { filedName: string }) => {
 
     return rules;
 }
+export const validateFileType = (
+    { type, name:any }: UploadFile,
+    allowedTypes?: string
+) => {
+    if (!allowedTypes) {
+        return true;
+    }
+
+    if (type) {
+        return allowedTypes.includes(type);
+    }
+};
 

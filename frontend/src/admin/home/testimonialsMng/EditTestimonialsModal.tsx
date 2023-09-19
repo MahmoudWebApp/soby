@@ -10,14 +10,14 @@ import AddEditModal from "../../../component/addEditModal/AddEditModal";
 import { RulesName } from "../../../utils/RulesValidation";
 import { useEffect, useState } from "react";
 import { ITestimonialsProps } from "../../../models/Testimonilas.model";
-import { useAddTestimonialMutation } from "../../../redux/api/homePageApi/TestimonialsHomeApi";
+import { useUpdateTestimonialMutation } from "../../../redux/api/homePageApi/TestimonialsHomeApi";
 
 
 
 
 
 const EditTestimonialsModal: React.FC<{ testimonialData: ITestimonialsProps }> = (props) => {
-    const [addTestimonial, { isSuccess, isLoading }] = useAddTestimonialMutation();
+    const [updateTestimonial, { isSuccess, isLoading }] = useUpdateTestimonialMutation();
     const [imageFile, setImageFile] = useState<any>();
     const [formTestimonialsEdit] = Form.useForm();
     const [fileList, setFileList] = useState<UploadFile[]>([]);
@@ -60,15 +60,15 @@ const EditTestimonialsModal: React.FC<{ testimonialData: ITestimonialsProps }> =
         try {
             await formTestimonialsEdit.validateFields();
             const formData = new FormData();
-            formData.append("id", props.testimonialData?.id?.toString())
+            formData.append("testimonials_id", props.testimonialData?.id?.toString())
             formData.append("name_ar", values?.name_ar);
             formData.append("name_en", values?.name_en);
             formData.append("position_ar", values?.position_ar);
             formData.append("position_en", values?.position_en);
             formData.append("content_ar", values?.content_ar);
             formData.append("content_en", values?.content_en);
-            formData.append("image", imageFile);
-            await addTestimonial(formData)
+            formData.append("image", imageFile ?? null);
+            await updateTestimonial(formData)
 
 
         } catch (e) {
@@ -97,26 +97,26 @@ const EditTestimonialsModal: React.FC<{ testimonialData: ITestimonialsProps }> =
                         <div className="grid grid-row-2 gap-y-6">
                             <div className="grid grid-cols-2 gap-x-6">
                                 <div className="flex flex-col ">
-                                    <Form.Item label="Name English" name="name_ar"
+                                    <Form.Item label="Name English" name="name_en"
                                         rules={RulesName({ name: `Name English`, countChar: 50 })}
 
                                     >
                                         <Input />
                                     </Form.Item>
-                                    <Form.Item label="Name Arabic" name="name_en"
+                                    <Form.Item label="Name Arabic" name="name_ar"
                                         rules={RulesName({ name: `Name Arabic`, countChar: 50 })}
 
                                     >
                                         <Input />
                                     </Form.Item>
 
-                                    <Form.Item label="Position English" name="position_ar"
+                                    <Form.Item label="Position English" name="position_en"
                                         rules={RulesName({ name: `Position English`, countChar: 50 })}
 
                                     >
                                         <Input />
                                     </Form.Item>
-                                    <Form.Item label="Position Arabic" name="position_en"
+                                    <Form.Item label="Position Arabic" name="position_ar"
                                         rules={RulesName({ name: `Position Arabic`, countChar: 50 })}
 
                                     >

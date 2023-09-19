@@ -2,67 +2,54 @@ import {
 
     Button,
     Form,
-    Input, Space, Upload, UploadFile, UploadProps
+    Input, Space,
+    //  Upload, UploadFile, UploadProps
 } from "antd";
 import { t } from "i18next";
 
 import AddEditModal from "../../../component/addEditModal/AddEditModal";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TestimonialsVideosTable from "./TestimonialsVideosTable";
 import TitlePageAdmin from "../../../component/TitlePageAdmin";
+import { RulesName } from "../../../utils/RulesValidation";
+import { useAddTestimonialVideoMutation, useGetAllTestimonialsVideosQuery } from "../../../redux/api/homePageApi/testimoialsVideos";
 
 
 
 
 
 const TestimonialsVideosMng = () => {
-    const [imageFile, setImageFile] = useState<any>();
+    const { testimonialsVideos } = useGetAllTestimonialsVideosQuery<{ testimonialsVideos: any[] }>(undefined, {
+        selectFromResult: ({ data }) => ({
+            testimonialsVideos: data?.data ?? [],
+        }),
+    });
+    const [addTestimonialVideo, { isSuccess, isLoading }] = useAddTestimonialVideoMutation();
     const [formTestimonialsVideosAdd] = Form.useForm();
-    const [fileList, setFileList] = useState<UploadFile[]>([]);
     const [isModalVisible, setIsModalVisible] = useState(false)
-    const propsImage: UploadProps = {
-        onChange(info) {
-            setFileList(info.fileList);
-            setImageFile(info.file)
-        },
-        onRemove: file => {
-            const index = fileList.indexOf(file);
-            const newFileList = fileList.slice();
-            newFileList.splice(index, 1);
-            setFileList(newFileList);
-        },
-        beforeUpload: file => {
-            setFileList([...fileList, file]);
-            return false;
-        },
-        fileList,
-        progress: {
-            strokeColor: {
-                '0%': '#108ee9',
-                '100%': '#87d068',
-            },
-            strokeWidth: 3,
-            format: (percent) => percent && `${parseFloat(percent.toFixed(2))}%`,
-        },
-    };
-
+    useEffect(() => {
+        if (isSuccess) {
+            formTestimonialsVideosAdd.resetFields()
+            setIsModalVisible(false)
+        }
+    }, [formTestimonialsVideosAdd, isSuccess])
     const onFinish = async (values: any) => {
         try {
             await formTestimonialsVideosAdd.validateFields();
-            console.log(values);
 
-            // const formData = new FormData();
-            // formData.append("avatar", imageFile);
-
+            const formData = new FormData();
+            formData.append("video_link", values?.video_link);
+            await addTestimonialVideo(formData)
 
         } catch (e) {
             console.log("onEditRow ", e);
         }
     }
+
     return (
         <div className="mt-12 px-12 admin-management">
-             <TitlePageAdmin title={"Testimonials Videos"}/>
+            <TitlePageAdmin title={"Testimonials Videos"} />
             <div className="flex flex-col gap-y-6">
                 <AddEditModal
                     btnText={<button
@@ -82,31 +69,33 @@ const TestimonialsVideosMng = () => {
                         className="form-add-student-assessment"
                     >
 
-                        <Form.Item>
-                            <Upload listType="picture" maxCount={1}
-                                accept="image/*"  {...propsImage} >
-                                <Button className="bg-[#f7a833] text-white">{`${t("Upload Image Testimonials")}`}</Button>
-                            </Upload>
-                        </Form.Item>
+                        <Form.Item label="Video Link" name="video_link"
+                            rules={RulesName({ name: `Video Link`, countChar: 1500 })}
 
+                        >
+                            <Input.TextArea />
+                        </Form.Item>
 
 
                         <Space className="flex  justify-around">
                             <Button key="back" onClick={() => {
                                 formTestimonialsVideosAdd.resetFields()
-                                setFileList([]);
-                                setImageFile('')
                                 setIsModalVisible(false)
                             }} className="bg-soby-yellow-light text-white">
                                 {`${t("Cancel")}`}
                             </Button>,
-                            <Button key="submit" htmlType="submit" className="bg-soby-gray-blue-gray text-white">
+                            <Button key="submit" htmlType="submit" className="bg-soby-gray-blue-gray text-white"
+                                loading={isLoading}>
                                 {`${t("Save & Send")}`}
                             </Button>
                         </Space>
                     </Form>
                 </AddEditModal >
-                <TestimonialsVideosTable testimonialsVideosData={[]} />
+                <TestimonialsVideosTable testimonialsVideosData={testimonialsVideos?.map(t => {
+                    return {
+                        ...t, key: `${t.id}-key`
+                    }
+                })} />
             </div>
 
         </div>
