@@ -2,7 +2,7 @@ import {
 
     Button,
     Form,
-    Input, Spin, Upload, UploadFile, UploadProps
+    Input, Spin, Upload, UploadFile, UploadProps, message
 } from "antd";
 import { t } from "i18next";
 
@@ -16,10 +16,10 @@ import "video-react/dist/video-react.css";
 
 
 const HomeAboutMng = () => {
-    const { aboutHomeData } = useGetAboutHomeDataQuery<{ aboutHomeData: any }>(undefined, {
-        selectFromResult: ({ data }) => ({
-
-            aboutHomeData: data?.about
+    const { aboutHomeData, isLoadingData } = useGetAboutHomeDataQuery<{ aboutHomeData: any , isLoadingData:boolean}>(undefined, {
+        selectFromResult: ({ data, isLoading }) => ({
+            aboutHomeData: data?.about,
+            isLoadingData: isLoading
         }),
     });
     const [addUpdateAboutHome, { isSuccess, isLoading }] = useAddUpdateAboutHomeDataMutation();
@@ -31,9 +31,16 @@ const HomeAboutMng = () => {
             formHomeAboutAdd.resetFields();
             setFileList([]);
             setImageFile(null)
-            formHomeAboutAdd.setFieldsValue(aboutHomeData)
+            formHomeAboutAdd.setFieldsValue(aboutHomeData); 
         }
     }, [aboutHomeData, formHomeAboutAdd, isSuccess])
+
+    useEffect(() => {
+        if (isSuccess) {
+        message.success("operation success") 
+        }
+    }, [ isSuccess])
+
     const propsImage: UploadProps = {
         onChange(info) {
             setFileList(info.fileList);
@@ -82,7 +89,7 @@ const HomeAboutMng = () => {
         <div className="mt-12 px-12 admin-management">
             <TitlePageAdmin title={"Home About"} />
             <div className="flex flex-col gap-y-6 mt-3">
-                <Spin spinning={isLoading}>
+                <Spin spinning={isLoading || isLoadingData}>
 
 
                     {aboutHomeData && <Form layout="vertical" form={formHomeAboutAdd}
@@ -98,13 +105,13 @@ const HomeAboutMng = () => {
                                         rules={RulesName({ name: `Title English`, countChar: 50 })}
                                         className="w-1/2"
                                     >
-                                        <Input  />
+                                        <Input />
                                     </Form.Item>
                                     <Form.Item label="Title Arabic" name="title_ar"
                                         rules={RulesName({ name: `Title Arabic`, countChar: 50 })}
                                         className="w-1/2"
                                     >
-                                       <Input  dir="rtl"/>
+                                        <Input dir="rtl" />
                                     </Form.Item>
                                 </div>
                                 <div className="flex gap-x-6">
@@ -120,7 +127,7 @@ const HomeAboutMng = () => {
                                         rules={RulesName({ name: `Sub Title Arabic`, countChar: 50 })}
                                         className="w-1/2"
                                     >
-                                       <Input  dir="rtl"/>
+                                        <Input dir="rtl" />
                                     </Form.Item>
                                 </div>
                             </div>
@@ -162,7 +169,7 @@ const HomeAboutMng = () => {
                                                     ]}
                                                     className="w-[47%] mb-0"
                                                 >
-                                                    <Input.TextArea placeholder={`${t("Content Arabic")}`} dir="rtl" autoSize/>
+                                                    <Input.TextArea placeholder={`${t("Content Arabic")}`} dir="rtl" autoSize />
                                                 </Form.Item>
                                                 <MinusCircleOutlined onClick={() => remove(name)} />
                                             </div>

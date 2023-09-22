@@ -33,10 +33,10 @@ const AboutPublication = () => {
 
             <div className="flex flex-col gap-y-3 w-full">
                 <h4 className="text-soby-yellow-light lg:text-5xl md:text-4xl text-3xl  font-semibold">
-                    Brand
+                    Soby
                 </h4>
                 <h3 className="text-soby-gray-blue-gray lg:text-7xl md:text-6xl text-5xl font-bold">
-                    Promise
+                Publication
                 </h3>
                 <div className="mt-12 flex items-center lg:gap-12 md:gap-x-[4%] gap-y-6 flex-wrap ">
                     {aboutPublicationData?.map(n => <AboutPublicationCard

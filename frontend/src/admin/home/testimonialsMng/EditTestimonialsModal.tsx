@@ -2,7 +2,7 @@ import {
 
     Button,
     Form,
-    Input, Space, Upload, UploadFile, UploadProps
+    Input, Space, Upload, UploadFile, UploadProps, message
 } from "antd";
 import { t } from "i18next";
 
@@ -30,6 +30,11 @@ const EditTestimonialsModal: React.FC<{ testimonialData: ITestimonialsProps }> =
             setIsModalVisible(false)
         }
     }, [formTestimonialsEdit, isSuccess])
+    useEffect(() => {
+        if (isSuccess) {
+            message.success("operation success")
+        }
+    }, [isSuccess])
     const propsImage: UploadProps = {
         onChange(info) {
             setFileList(info.fileList);
@@ -89,7 +94,7 @@ const EditTestimonialsModal: React.FC<{ testimonialData: ITestimonialsProps }> =
 
                 >
                     <Form layout="vertical" form={formTestimonialsEdit}
-                        name="edit-testimoials"
+                        name="edit-testimonial"
                         onFinish={onFinish}
                         className="form-add-student-assessment"
                         initialValues={props.testimonialData}

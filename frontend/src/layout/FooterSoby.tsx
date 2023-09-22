@@ -1,7 +1,7 @@
 
 import { NavLink } from "react-router-dom";
 import logo from "../assets/svg/soby logo.svg";
-import MainMenu from "../component/MainMenu";
+
 import SocialMenu from "../component/SocialMenu";
 import MainFooterMenu from "../component/MainFooterMenu";
 const FooterSoby = () => {

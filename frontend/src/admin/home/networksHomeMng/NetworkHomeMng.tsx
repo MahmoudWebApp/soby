@@ -19,7 +19,7 @@ import { INetworksProps } from "../../../models/Networks.model";
 
 
 const NetworksHomeMng = () => {
-    const { networks } = useGetAllNetworksQuery<{ networks: INetworksProps[] }>(undefined, {
+    const { networks  } = useGetAllNetworksQuery<{ networks: INetworksProps[] }>(undefined, {
         selectFromResult: ({ data }) => ({
             networks: data?.networks ?? [],
         }),
@@ -112,13 +112,13 @@ const NetworksHomeMng = () => {
                             <div className="grid grid-row-2 gap-y-6">
                                 <div className="grid grid-cols-2 gap-x-6">
                                     <div className="flex flex-col ">
-                                        <Form.Item label="Title English" name="title_ar"
+                                        <Form.Item label="Title English" name="title_en"
                                             rules={RulesName({ name: `The Field`, countChar: 50 })}
 
                                         >
                                             <Input />
                                         </Form.Item>
-                                        <Form.Item label="Title Arabic" name="title_en"
+                                        <Form.Item label="Title Arabic" name="title_ar"
                                             rules={RulesName({ name: `The Field`, countChar: 50 })}
 
                                         >

@@ -1,6 +1,7 @@
 import { t } from "i18next";
 import videoIcon from '../../assets/svg/icon-video.svg'
 import { SobyBigButton } from "../buttons";
+import SendMessageForGiftModal from "../SendMessageForGift";
 
 const SliderContain: React.FC<unknown> = () => {
   return (
@@ -78,11 +79,7 @@ const SliderContain: React.FC<unknown> = () => {
         </button>
       </div>
       <div className="xl:mt-16 sm:mt-4 mt-1">
-        <SobyBigButton
-          title={`${t("Claim Your Thank-You Gift")}`}
-          bgColor="bg-soby-yellow-light"
-          textColor="text-soby-light-1"
-        />
+      <SendMessageForGiftModal/>
       </div>
     </div>
   );

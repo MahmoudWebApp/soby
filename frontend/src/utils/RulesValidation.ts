@@ -50,7 +50,7 @@ export const RulesPassword = (props: { filedName: string }) => {
     return rules;
 }
 export const validateFileType = (
-    { type, name:any }: UploadFile,
+    { type }: UploadFile,
     allowedTypes?: string
 ) => {
     if (!allowedTypes) {

@@ -2,7 +2,7 @@ import {
 
     Button,
     Form,
-    Space, Upload, UploadFile, UploadProps
+    Space, Spin, Upload, UploadFile, UploadProps, message
 } from "antd";
 import { t } from "i18next";
 
@@ -19,9 +19,10 @@ import { useAddCompanyMutation, useGetAllCompaniesQuery } from "../../../redux/a
 
 
 const CompaniesHomeMng = () => {
-    const { companies } = useGetAllCompaniesQuery<{ companies: any[] }>(undefined, {
-        selectFromResult: ({ data }) => ({
+    const { companies, isLoadingData } = useGetAllCompaniesQuery<{ companies: any[], isLoadingData: boolean }>(undefined, {
+        selectFromResult: ({ data, isLoading }) => ({
             companies: data?.companies ?? [],
+            isLoadingData: isLoading
         }),
     });
     const [addCompany, { isSuccess, isLoading }] = useAddCompanyMutation();
@@ -37,6 +38,11 @@ const CompaniesHomeMng = () => {
             setIsModalVisible(false)
         }
     }, [formCompanyIconAdd, isSuccess])
+    useEffect(() => {
+        if (isSuccess) {
+            message.success("operation success")
+        }
+    }, [isSuccess])
     const propsImage: UploadProps = {
         onChange(info) {
             setFileList(info.fileList);
@@ -78,56 +84,57 @@ const CompaniesHomeMng = () => {
     return (
         <div className="mt-12 px-12 admin-management">
             <TitlePageAdmin title={"Home Companies "} />
-            <div className="flex flex-col gap-y-6">
-                <AddEditModal
-                    btnText={<button
-                        className="bg-soby-yellow-light px-6 py-2 text-white rounded-md text-base w-fit"
-                        onClick={() => setIsModalVisible(true)}>
-                        Add Company Icon
-                    </button>}
-                    title={" Add Company Icon"}
-                    width={"400px"}
-                    isModalVisible={isModalVisible}
-                    setIsModalVisible={setIsModalVisible}
+            <Spin spinning={isLoadingData || isLoading}>
+                <div className="flex flex-col gap-y-6">
+                    <AddEditModal
+                        btnText={<button
+                            className="bg-soby-yellow-light px-6 py-2 text-white rounded-md text-base w-fit"
+                            onClick={() => setIsModalVisible(true)}>
+                            Add Company Icon
+                        </button>}
+                        title={" Add Company Icon"}
+                        width={"400px"}
+                        isModalVisible={isModalVisible}
+                        setIsModalVisible={setIsModalVisible}
 
-                >
-                    <Form layout="vertical" form={formCompanyIconAdd}
-                        name="add-company"
-                        onFinish={onFinish}
-                        className="form-add-student-assessment"
                     >
+                        <Form layout="vertical" form={formCompanyIconAdd}
+                            name="add-company"
+                            onFinish={onFinish}
+                            className="form-add-student-assessment"
+                        >
 
-                        <Form.Item>
-                            <Upload listType="picture" maxCount={1}
-                                accept="image/*"  {...propsImage} >
-                                <Button className="bg-[#f7a833] text-white">{`${t("Upload New Icon")}`}</Button>
-                            </Upload>
-                        </Form.Item>
+                            <Form.Item>
+                                <Upload listType="picture" maxCount={1}
+                                    accept="image/*"  {...propsImage} >
+                                    <Button className="bg-[#f7a833] text-white">{`${t("Upload New Icon")}`}</Button>
+                                </Upload>
+                            </Form.Item>
 
 
 
-                        <Space className="flex  justify-around">
-                            <Button key="back" onClick={() => {
-                                formCompanyIconAdd.resetFields()
-                                setFileList([]);
-                                setImageFile('')
-                                setIsModalVisible(false)
-                            }} className="bg-soby-yellow-light text-white">
-                                {`${t("Cancel")}`}
-                            </Button>,
-                            <Button key="submit" htmlType="submit" className="bg-soby-gray-blue-gray text-white" loading={isLoading}>
-                                {`${t("Save & Send")}`}
-                            </Button>
-                        </Space>
-                    </Form>
-                </AddEditModal >
-                <CompaniesHomeTable companiesData={companies?.map(c => {
-                    return {
-                        ...c, key: `${c.id}-key`
-                    }
-                })} />
-            </div>
-
+                            <Space className="flex  justify-around">
+                                <Button key="back" onClick={() => {
+                                    formCompanyIconAdd.resetFields()
+                                    setFileList([]);
+                                    setImageFile('')
+                                    setIsModalVisible(false)
+                                }} className="bg-soby-yellow-light text-white">
+                                    {`${t("Cancel")}`}
+                                </Button>,
+                                <Button key="submit" htmlType="submit" className="bg-soby-gray-blue-gray text-white" loading={isLoading}>
+                                    {`${t("Save & Send")}`}
+                                </Button>
+                            </Space>
+                        </Form>
+                    </AddEditModal >
+                    <CompaniesHomeTable companiesData={companies?.map(c => {
+                        return {
+                            ...c, key: `${c.id}-key`
+                        }
+                    })} />
+                </div>
+            </Spin>
         </div>
     )
 }

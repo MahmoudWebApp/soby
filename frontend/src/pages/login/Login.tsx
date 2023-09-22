@@ -23,7 +23,7 @@ const Login = () => {
 
 
             <div className="flex  flex-col  justify-center items-center sm:p-10 p-3">
-                <Spin spinning={isLoading}>
+                <Spin spinning={isLoading} size="large">
                     <div className=" flex flex-col items-center  gap-y-12 justify-center bg-white shadow-md px-12 py-12 rounded-md">
                         <div className="flex ">
                             <NavLink to="/">

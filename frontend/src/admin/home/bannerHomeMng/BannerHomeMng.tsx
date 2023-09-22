@@ -2,7 +2,7 @@ import {
 
     Button,
     Form,
-    Input, Spin, Upload, UploadFile, UploadProps
+    Input, Spin, Upload, UploadFile, UploadProps, message
 } from "antd";
 import { t } from "i18next";
 
@@ -16,10 +16,10 @@ import { useAddUpdateBannerHomeDataMutation, useGetBannerHomeDataQuery } from ".
 
 
 const BannerHomeMng = () => {
-    const { bannerHomeData } = useGetBannerHomeDataQuery<{ bannerHomeData: any }>(undefined, {
-        selectFromResult: ({ data }) => ({
-
-            bannerHomeData: data?.banner
+    const { bannerHomeData, isLoadingData } = useGetBannerHomeDataQuery<{ bannerHomeData: any, isLoadingData: boolean }>(undefined, {
+        selectFromResult: ({ data, isLoading }) => ({
+            bannerHomeData: data?.banner,
+            isLoadingData: isLoading
         }),
     });
     const [addUpdateBannerHome, { isSuccess, isLoading }] = useAddUpdateBannerHomeDataMutation();
@@ -33,7 +33,12 @@ const BannerHomeMng = () => {
             setImageFile(null)
             formBannerHomeAdd.setFieldsValue(bannerHomeData)
         }
-    }, [bannerHomeData, bannerHomeData, isSuccess])
+    }, [bannerHomeData, formBannerHomeAdd, isSuccess])
+    useEffect(() => {
+        if (isSuccess) {
+            message.success("operation success")
+        }
+    }, [isSuccess])
     const propsImage: UploadProps = {
         onChange(info) {
             setFileList(info.fileList);
@@ -82,7 +87,7 @@ const BannerHomeMng = () => {
         <div className="mt-12 px-12 admin-management">
             <TitlePageAdmin title={"Home Banner"} />
             <div className="flex flex-col gap-y-6 mt-3">
-                <Spin spinning={isLoading}>
+                <Spin spinning={isLoading || isLoadingData}>
 
                     {bannerHomeData && <Form layout="vertical" form={formBannerHomeAdd}
                         name="add-home-banner"
@@ -130,7 +135,7 @@ const BannerHomeMng = () => {
                                         <Button className="bg-[#f7a833] text-white">{`${t("Upload New Image")}`}</Button>
                                     </Upload>
                                 </Form.Item>
-                                <img 
+                                <img
                                     src={bannerHomeData?.image}
                                     className="w-[300px]  h-[200px] md:rounded-3xl rounded-lg border bg-[#ccc]" />
                             </div>

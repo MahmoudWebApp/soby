@@ -11,8 +11,18 @@ import logo from "../assets/favicon-soby.jpg"
 import { TfiLayoutSlider } from "react-icons/tfi"
 import { BiInfoSquare, BiBuilding } from "react-icons/bi"
 import { IoPeopleOutline } from "react-icons/io5"
-import { PiFlagBannerLight } from "react-icons/pi"
-import { LiaNetworkWiredSolid } from "react-icons/lia"
+import { PiExamLight, PiFlagBannerLight, PiStepsLight } from "react-icons/pi"
+import { LiaNetworkWiredSolid, LiaBookSolid } from "react-icons/lia"
+import { LuBadgeInfo } from 'react-icons/lu'
+import { TiMessageTyping } from 'react-icons/ti'
+import {
+    TbBrandStorybook, TbBrandAbstract,
+    TbBrandBooking, TbBrandCarbon, TbBrandElectronicArts, TbBrandElastic, TbBrandBlogger, TbHelicopterLanding, Tb360
+} from 'react-icons/tb'
+import { FaChalkboardTeacher, FaQuestion } from 'react-icons/fa'
+import { MdOutlinePlayLesson, MdOutlinePlaylistPlay } from 'react-icons/md'
+import { BsJournalBookmarkFill } from 'react-icons/bs'
+
 
 
 
@@ -22,6 +32,7 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
     label: React.ReactNode,
+
     key: React.Key,
     icon?: React.ReactNode,
     children?: MenuItem[],
@@ -29,6 +40,7 @@ function getItem(
     return {
         key,
         icon,
+
         children,
         label,
     } as MenuItem;
@@ -41,7 +53,7 @@ const AdminLayout: React.FC = () => {
 
     const items: MenuItem[] = [
         getItem('DashBoard', '/admin', <PieChartOutlined />),
-        getItem('Home', '', <HomeOutlined />, [
+        getItem('Home', '/admin/home', <HomeOutlined />, [
             getItem('Slider Hero', '/admin/home/slider-hero', <TfiLayoutSlider />),
             getItem('About', '/admin/home/about', <BiInfoSquare />),
             getItem('Testimonials', '/admin/home/testimonials', <IoPeopleOutline />),
@@ -50,6 +62,35 @@ const AdminLayout: React.FC = () => {
             getItem('Networks', '/admin/home/networks', <LiaNetworkWiredSolid />),
 
         ]
+        ),
+        getItem('About', '/admin/about', <LuBadgeInfo />, [
+            getItem('Vision& Mission', '/admin/about/vision-mission', <TiMessageTyping />),
+            getItem('Profile Pdf', '/admin/about/profile-pdf', <HomeOutlined />),
+            getItem('Story', '/admin/about/story', <TbBrandStorybook />),
+            getItem('Brand', '/admin/about/brand', <TbBrandAbstract />),
+            getItem('Clifton', '/admin/about/clifton', <TbBrandCarbon />),
+            getItem('Education', '/admin/about/education', <TbBrandElectronicArts />),
+            getItem('Experience', '/admin/about/experience', <TbBrandElastic />),
+            getItem('Books', '/admin/about/books', <LiaBookSolid />),
+
+        ]
+        ),
+        getItem('Branding', '/admin/branding', <TbBrandBooking />, [
+            getItem('LandingPage', '/admin/branding/landing-page', <TbHelicopterLanding />),
+            getItem('Suffer', '/admin/branding/Suffer', <Tb360 />),
+            getItem('Steps', '/admin/branding/steps', <PiStepsLight />),
+            getItem('Trainers', '/admin/branding/trainers', <FaChalkboardTeacher />),
+            getItem('FAQ', '/admin/branding/faq', <FaQuestion />),
+            getItem('Lessons', '/admin/branding/lessons', <MdOutlinePlayLesson />),
+        ]
+        ),
+        getItem('Training', 'admin/training', <PiExamLight />,
+        ),
+        getItem('Blog', 'admin/blog', <TbBrandBlogger />,
+        ),
+        getItem('Courses', 'admin/courses', <BsJournalBookmarkFill />,
+        ),
+        getItem('Networks PlayList', 'admin/networks-playList', <MdOutlinePlaylistPlay />,
         ),
 
 

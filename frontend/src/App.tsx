@@ -4,7 +4,6 @@ import Router from "./router/Router";
 
 import { useState } from "react";
 
-import { FooterSoby, HeaderSoby } from "./layout";
 
 
 function App() {

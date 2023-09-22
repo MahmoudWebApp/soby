@@ -1,12 +1,15 @@
 import { Avatar, Space, Table, Tag } from 'antd';
 import TextEnAr from '../../../component/TextEnAr';
 import EditSliderHeroModal from './EditSliderHeroModal';
-import DeleteButton from '../../../component/DeleteButton';
+import { useDeleteSlideMutation } from '../../../redux/api/homePageApi/sliderHomeApi';
+import PopconfirmDelete from '../../../component/popconfirmDelete/PopconfirmDelete';
+import ContentSliderModal from './ContentSliderModal';
 
 
 
 
 const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
+    const [deleteSlide, { isLoading }] = useDeleteSlideMutation();
     const columns: any[] = [
         {
             title: "Avatar",
@@ -81,21 +84,31 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
             },
         },
         {
+            title: "Content",
+            dataIndex: "",
+            width: "5%",
+            render: (record: any) => {
+                return <>
+                    <ContentSliderModal contents={record?.content} />
+                </>;
+            },
+        },
+        {
             title: "Action",
             dataIndex: "",
             width: "10%",
             render: (record: any) => {
                 return <Space className="flex flex-col justify-center gap-y-3">
-                    <EditSliderHeroModal />
-                    <DeleteButton onClick={async () => {
+                    <EditSliderHeroModal sliderData={record} />
+                    <PopconfirmDelete onConfirm={async () => {
                         try {
-                            console.log(record?.id);
+                            await deleteSlide({ slide_id: record?.id })
                         } catch (err) {
                             console.log(err);
 
                         }
 
-                    }} />
+                    }} title={'Delete Network'} isLoading={isLoading} />
 
                 </Space>
             }

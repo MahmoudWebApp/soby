@@ -29,6 +29,11 @@ const EditNetworksHomeModal: React.FC<{ networkData: any }> = (props) => {
             setIsModalVisible(false)
         }
     }, [formNetworksHomeEdit, isSuccess])
+    useEffect(() => {
+        if (isSuccess) {
+            message.success("operation success")
+        }
+    }, [isSuccess])
     const propsImage: UploadProps = {
         onRemove: file => {
             const index = fileList.indexOf(file);
@@ -101,13 +106,13 @@ const EditNetworksHomeModal: React.FC<{ networkData: any }> = (props) => {
                         <div className="grid grid-row-2 gap-y-6">
                             <div className="grid grid-cols-2 gap-x-6">
                                 <div className="flex flex-col ">
-                                    <Form.Item label="Title English" name="title_ar"
+                                    <Form.Item label="Title English" name="title_en"
                                         rules={RulesName({ name: `The Field`, countChar: 50 })}
 
                                     >
                                         <Input />
                                     </Form.Item>
-                                    <Form.Item label="Title Arabic" name="title_en"
+                                    <Form.Item label="Title Arabic" name="title_ar"
                                         rules={RulesName({ name: `The Field`, countChar: 50 })}
 
                                     >

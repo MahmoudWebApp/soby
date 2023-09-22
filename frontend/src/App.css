@@ -33,5 +33,7 @@
   color: inherit !important;
   border: inherit !important;
 }
-
+.ant-spin-dot-item {
+  background-color: #f7a833 !important;
+}
 /* //////////////////////////// */

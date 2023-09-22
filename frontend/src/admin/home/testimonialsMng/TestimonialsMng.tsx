@@ -2,7 +2,7 @@ import {
 
     Button,
     Form,
-    Input, Space, Spin, Upload, UploadFile, UploadProps
+    Input, Space, Spin, Upload, UploadFile, UploadProps, message
 } from "antd";
 import { t } from "i18next";
 
@@ -19,9 +19,10 @@ import { useAddTestimonialMutation, useGetAllTestimonialsQuery } from "../../../
 
 
 const TestimonialsMng = () => {
-    const { testimonials } = useGetAllTestimonialsQuery<{ testimonials: ITestimonialsProps[] }>(undefined, {
-        selectFromResult: ({ data }) => ({
+    const { testimonials, isLoadingData } = useGetAllTestimonialsQuery<{ testimonials: ITestimonialsProps[], isLoadingData: boolean }>(undefined, {
+        selectFromResult: ({ data, isLoading }) => ({
             testimonials: data?.testimonials ?? [],
+            isLoadingData: isLoading
         }),
     });
     const [addTestimonial, { isSuccess, isLoading }] = useAddTestimonialMutation();
@@ -37,6 +38,11 @@ const TestimonialsMng = () => {
             setIsModalVisible(false)
         }
     }, [formTestimonialsAdd, isSuccess])
+    useEffect(() => {
+        if (isSuccess) {
+            message.success("operation success")
+        }
+    }, [isSuccess])
 
     const propsImage: UploadProps = {
         onChange(info) {
@@ -88,11 +94,11 @@ const TestimonialsMng = () => {
         <>
 
             <div className="mt-12 px-12 admin-management">
-                <TitlePageAdmin title={"Testimonilas"} />
-                <Spin spinning={isLoading}>
+                <TitlePageAdmin title={"Testimonials"} />
+                <Spin spinning={isLoading || isLoadingData}>
                     <div className="flex flex-col gap-y-6">
                         <AddEditModal
-                           
+
                             btnText={<button
                                 className="bg-soby-yellow-light px-6 py-2 text-white rounded-md text-base w-fit"
                                 onClick={() => setIsModalVisible(true)}>

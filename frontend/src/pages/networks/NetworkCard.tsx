@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 const CourseCard: React.FC<{ videoSrc: string, title: string, description: string, findMoreUrl: string }> = (props) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     return (
         <div className="flex flex-col gap-y-3">
 
