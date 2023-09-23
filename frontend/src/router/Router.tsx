@@ -4,7 +4,7 @@ import AnonymousRoute from "./nonymousRoute";
 import WebsiteLayout from "../layout/WebsiteLayout";
 import AdminRoute from "./adminRoute";
 import AdminLayout from "../layout/AdminLayout";
-import { BannerHomeMng, BlogMng, BookAboutMng, BrandAboutMng, CliftonAboutMng, CompaniesHomeMng, CoursesMng, EducationAboutMng, ExperienceAboutMng, FaqBrandingMng, HomeAboutMng, MissionVisionMng, NetworksHomeMng, PlayListsMng, ProfilePdfMng, SliderHeroMng, StartPage, StepsBrandingMng, StoryAboutMng, TestimonialsMng, TrainersMng, TrainingMng } from "../admin";
+import { BannerHomeMng, BlogMng, BookAboutMng, BrandAboutMng, CliftonAboutMng, CompaniesHomeMng, CoursesMng, EducationAboutMng, ExperienceAboutMng, FaqBrandingMng, HomeAboutMng, MissionVisionMng, NetworksHomeMng, PlayListsMng, ProfilePdfMng, SliderHeroMng, StartPage, StepsBrandingMng, StoryAboutMng, SufferMng, TestimonialsMng, TrainersMng, TrainingMng } from "../admin";
 import PageLoadBook from "../pages/PageLoadBook";
 
 const index = () => {
@@ -52,6 +52,7 @@ const index = () => {
         <Route path="/admin/branding/faq" element={< FaqBrandingMng />} />
         <Route path="/admin/branding/steps" element={< StepsBrandingMng />} />
         <Route path="/admin/branding/trainers" element={< TrainersMng />} />
+        <Route path="/admin/branding/suffer" element={< SufferMng />} />
         {/* Training Management */}
         <Route path="/admin/training" element={<TrainingMng />} />
         {/* Blog Management */}

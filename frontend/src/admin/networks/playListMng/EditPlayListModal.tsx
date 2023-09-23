@@ -29,8 +29,9 @@ const EditPlayListModal: React.FC<{ playlistData: any }> = (props) => {
             setFileList([]);
             setImageFile('')
             setIsModalVisible(false)
+            formPlayListEdit.setFieldsValue(props.playlistData)
         }
-    }, [formPlayListEdit, isSuccess])
+    }, [formPlayListEdit, isSuccess, props.playlistData])
     useEffect(() => {
         if (isSuccess) {
             message.success("operation success")

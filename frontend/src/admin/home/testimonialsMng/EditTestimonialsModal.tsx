@@ -28,8 +28,9 @@ const EditTestimonialsModal: React.FC<{ testimonialData: ITestimonialsProps }> =
             setFileList([]);
             setImageFile('')
             setIsModalVisible(false)
+            formTestimonialsEdit.setFieldsValue(props. testimonialData)
         }
-    }, [formTestimonialsEdit, isSuccess])
+    }, [formTestimonialsEdit, isSuccess, props.testimonialData])
     useEffect(() => {
         if (isSuccess) {
             message.success("operation success")

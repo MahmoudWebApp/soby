@@ -27,8 +27,10 @@ const EditBooksAboutModal: React.FC<{ bookData: any }> = (props) => {
             setFileList([]);
             setImageFile('')
             setIsModalVisible(false)
+            formBooksAboutEdit.setFieldsValue(props.bookData)
         }
-    }, [formBooksAboutEdit, isSuccess])
+    }, [formBooksAboutEdit, isSuccess, props.bookData])
+
     useEffect(() => {
         if (isSuccess) {
             message.success("operation success")

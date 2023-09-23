@@ -27,8 +27,9 @@ const EditNetworksHomeModal: React.FC<{ networkData: any }> = (props) => {
             setFileList([]);
             setImageFile('')
             setIsModalVisible(false)
+            formNetworksHomeEdit.setFieldsValue(props.networkData)
         }
-    }, [formNetworksHomeEdit, isSuccess])
+    }, [formNetworksHomeEdit, isSuccess, props.networkData])
     useEffect(() => {
         if (isSuccess) {
             message.success("operation success")

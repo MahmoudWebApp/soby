@@ -89,7 +89,11 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
             width: "5%",
             render: (record: any) => {
                 return <>
-                    <ContentSliderModal contents={record?.content} />
+                      <ContentSliderModal contents={record?.content?.map((c:any) =>{
+                        return{
+                            ...c,key:c?.content_en
+                        }
+                    })} />
                 </>;
             },
         },

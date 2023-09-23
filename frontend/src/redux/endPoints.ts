@@ -95,13 +95,13 @@ export const endPoints = {
   getAllQuestions: "/api/questions",
   addQuestion: "/api/questions",
   updateQuestion: "/api/questions/update",
-  deleteQuestion: "/api/questions",
+  deleteQuestion: "/api/questions/",
 
   // Trainers Branding
   getAllTrainers: "/api/trainers",
   addTrainer: "/api/trainers",
   updateTrainer: "/api/trainers/update",
-  deleteTrainer: "/api/trainers",
+  deleteTrainer: "/api/trainers/",
 
 
   // Training Page Home

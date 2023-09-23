@@ -9,7 +9,7 @@ import { t } from "i18next";
 import AddEditModal from "../../../component/addEditModal/AddEditModal";
 import { RulesName } from "../../../utils/RulesValidation";
 import { useEffect, useState } from "react";
-
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { useUpdateCourseMutation } from "../../../redux/api/coursesPageApi/coursesApi";
 
 
@@ -66,11 +66,10 @@ const EditCoursesModal: React.FC<{ courseData: any }> = (props) => {
             await formCourseEdit.validateFields();
             const formData = new FormData();
             formData.append("course_id", props.courseData?.id);
-            formData.append("image", imageFile??null);
-            formData.append("title_ar", values?.title_ar);
-            formData.append("title_en", values?.title_en);
-            formData.append("content_ar", values?.content_ar);
-            formData.append("content_en", values?.content_en);
+            formData.append("image", imageFile ?? null);
+            formData.append("name_ar", values?.name_ar);
+            formData.append("name_en", values?.name_en);
+            formData.append("content", JSON.stringify(values?.content))
             formData.append("link", values?.link);
             await updateCourse(formData)
 
@@ -103,13 +102,13 @@ const EditCoursesModal: React.FC<{ courseData: any }> = (props) => {
                         <div className="grid grid-row-2 gap-y-6">
                             <div className="grid grid-cols-2 gap-x-6">
                                 <div className="flex flex-col ">
-                                    <Form.Item label="Title English" name="title_en"
+                                    <Form.Item label="Title English" name="name_en"
                                         rules={RulesName({ name: `The Field`, countChar: 50 })}
 
                                     >
                                         <Input />
                                     </Form.Item>
-                                    <Form.Item label="Title Arabic" name="title_ar"
+                                    <Form.Item label="Title Arabic" name="name_ar"
                                         rules={RulesName({ name: `The Field`, countChar: 50 })}
 
                                     >
@@ -131,22 +130,55 @@ const EditCoursesModal: React.FC<{ courseData: any }> = (props) => {
                                     >
                                         <Input />
                                     </Form.Item>
-                                    <Form.Item label="Description English" name="content_en"
-                                        rules={RulesName({ name: `The Field`, countChar: 1500 })}
 
-                                    >
-                                        <Input.TextArea />
-                                    </Form.Item>
-                                    <Form.Item label="Description Arabic" name="content_ar"
-                                        rules={RulesName({ name: `The Field`, countChar: 1500 })}
-
-                                    >
-                                        <Input.TextArea />
-                                    </Form.Item>
 
                                 </div>
                             </div>
+                            <div>
+                                <div>
+                                    <Form.List name="content" >
+                                        {(fields, { add, remove }) => (
+                                            <>
+                                                {fields.map(({ key, name, ...restField }) => (
+                                                    <div className="flex items-center  gap-x-3 mb-6" key={key}>
+                                                        <Form.Item
+                                                            {...restField}
+                                                            name={[name, 'content_en']}
+                                                            rules={[{ required: true },
+                                                            { max: 1024, message: `${t("Content English")} ${t("must be less than 1024 characters.")}` }
 
+                                                            ]}
+                                                            className="w-[47%] mb-0"
+                                                        >
+                                                            <Input.TextArea placeholder={`${t("Content English")}`} autoSize />
+                                                        </Form.Item>
+                                                        <Form.Item
+                                                            {...restField}
+                                                            name={[name, 'content_ar']}
+                                                            rules={[{ required: true },
+                                                            { max: 1024, message: `${t("Content Arabic")} ${t("must be less than 1024 characters.")}` }
+                                                            ]}
+                                                            className="w-[47%] mb-0"
+                                                        >
+                                                            <Input.TextArea placeholder={`${t("Content Arabic")}`} dir="rtl" autoSize />
+                                                        </Form.Item>
+                                                        <MinusCircleOutlined onClick={() => remove(name)} />
+                                                    </div>
+
+
+                                                ))}
+                                                <Form.Item>
+                                                    <Button type="dashed" onClick={() => add()} block
+                                                        className="max-w-fit border-[#f7a833] text-[#f7a833]"
+                                                        icon={<PlusOutlined />}>
+                                                        {`${t("Add Content")}`}
+                                                    </Button>
+                                                </Form.Item>
+                                            </>
+                                        )}
+                                    </Form.List>
+                                </div>
+                            </div>
                         </div>
 
 

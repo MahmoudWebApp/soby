@@ -6,10 +6,11 @@ import { useGetAllVisitorsQuery } from "../redux/api/formGifts/formGiftsApi";
 const StartPage = () => {
   const { visitorsData, isLoadingData } = useGetAllVisitorsQuery<{ visitorsData: any[], isLoadingData: boolean }>(undefined, {
     selectFromResult: ({ data, isLoading }) => ({
-      visitorsData: data?.courses,
+      visitorsData: data?.data?.data,
       isLoadingData: isLoading
     }),
   });
+  
   const columns: any[] = [
     {
       title: "Name",

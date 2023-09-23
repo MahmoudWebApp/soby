@@ -20,7 +20,7 @@ import FaqBrandingTable from "./FaqBrandingTable";
 const FaqBrandingMng = () => {
     const { questionsData, isLoadingData } = useGetAllQuestionsQuery<{ questionsData: any[], isLoadingData: boolean }>(undefined, {
         selectFromResult: ({ data, isLoading }) => ({
-            questionsData: data?.questions,
+            questionsData: data?.data,
             isLoadingData: isLoading
         }),
     });

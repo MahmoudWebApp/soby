@@ -3,6 +3,7 @@ import TextEnAr from '../../../component/TextEnAr';
 import PopconfirmDelete from '../../../component/popconfirmDelete/PopconfirmDelete';
 import EditCourseModal from './EditCourseModal';
 import { useDeleteCourseMutation } from '../../../redux/api/coursesPageApi/coursesApi';
+import ContentSliderModal from '../../home/sliderHeroMng/ContentSliderModal';
 
 
 
@@ -28,31 +29,30 @@ const [deleteCourse, { isLoading }] = useDeleteCourseMutation();
         },
         {
             title: <TextEnAr t1={'Title'} t2={'English'} />,
-            dataIndex: "title_en",
+            dataIndex: "name_en",
             render: (text: any) => {
                 return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
             },
         },
         {
             title: <TextEnAr t1={'Title'} t2={'Arabic'} />,
-            dataIndex: "title_ar",
+            dataIndex: "name_ar",
             render: (text: any) => {
                 return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
             },
         },
-
         {
-            title: <TextEnAr t1={'Description'} t2={'English'} />,
-            dataIndex: "content_en",
-            render: (text: any) => {
-                return <><p className='text-word-dark text-sm'>{text}</p></>;
-            },
-        },
-        {
-            title: <TextEnAr t1={'Description'} t2={'Arabic'} />,
-            dataIndex: "content_ar",
-            render: (text: any) => {
-                return <><p className='text-word-dark text-sm'>{text}</p></>;
+            title: "Content",
+            dataIndex: "",
+            width: "5%",
+            render: (record: any) => {
+                return <>
+                    <ContentSliderModal contents={record?.content?.map((c:any) =>{
+                        return{
+                            ...c,key:c?.content_en
+                        }
+                    })} />
+                </>;
             },
         },
         {

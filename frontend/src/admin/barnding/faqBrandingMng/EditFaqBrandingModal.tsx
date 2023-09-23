@@ -28,8 +28,9 @@ const EditFaqBrandingModal: React.FC<{ questionData: any }> = (props) => {
             formFaqEdit.resetFields()
 
             setIsModalVisible(false)
+            formFaqEdit.setFieldsValue(props.questionData)
         }
-    }, [formFaqEdit, isSuccess])
+    }, [formFaqEdit, isSuccess, props.questionData])
     useEffect(() => {
         if (isSuccess) {
             message.success("operation success")

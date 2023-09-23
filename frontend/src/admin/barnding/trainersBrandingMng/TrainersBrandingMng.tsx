@@ -19,7 +19,7 @@ import { useAddTrainerMutation, useGetAllTrainersQuery } from "../../../redux/ap
 const TrainersMng = () => {
     const { trainers, isLoadingData } = useGetAllTrainersQuery<{ trainers: any[], isLoadingData: boolean }>(undefined, {
         selectFromResult: ({ data, isLoading }) => ({
-            trainers: data?.trainers ?? [],
+            trainers: data?.data ?? [],
             isLoadingData: isLoading
         }),
     });

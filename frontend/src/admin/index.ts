@@ -19,6 +19,7 @@ export { default as BookAboutMng } from './about/booksAboutMng/BookAboutMng'
 export { default as FaqBrandingMng } from './barnding/faqBrandingMng/faqBrandingMng'
 export { default as StepsBrandingMng } from './barnding/StepsBrandingMng/StepsBrandingMng'
 export { default as TrainersMng } from './barnding/trainersBrandingMng/TrainersBrandingMng'
+export { default as SufferMng } from './barnding/sufferBrandingMng/SufferBrandingMng'
 //Training  management
 export { default as TrainingMng } from "./training/trainingMng/TrainingMng"
 //Blog  management

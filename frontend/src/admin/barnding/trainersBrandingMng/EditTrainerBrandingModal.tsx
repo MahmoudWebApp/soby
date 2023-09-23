@@ -27,9 +27,12 @@ const EditTrainerBrandingModal: React.FC<{ trainerData:any }> = (props) => {
             formTrainersEdit.resetFields()
             setFileList([]);
             setImageFile('')
+            formTrainersEdit.setFieldsValue(props.trainerData)
             setIsModalVisible(false)
+         
+
         }
-    }, [formTrainersEdit, isSuccess])
+    }, [formTrainersEdit, isSuccess, props.trainerData])
     useEffect(() => {
         if (isSuccess) {
             message.success("operation success")

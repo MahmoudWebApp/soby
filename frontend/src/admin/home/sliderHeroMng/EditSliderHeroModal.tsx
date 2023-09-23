@@ -26,8 +26,9 @@ const EditSliderHeroModal: React.FC<{ sliderData: any }> = (props) => {
             setFileList([]);
             setImageFile('')
             setIsModalVisible(false)
+            formHeroEdit.setFieldsValue(props.sliderData)
         }
-    }, [formHeroEdit, isSuccess])
+    }, [formHeroEdit, isSuccess, props.sliderData])
     useEffect(() => {
         if (isSuccess) {
             message.success("operation success")
