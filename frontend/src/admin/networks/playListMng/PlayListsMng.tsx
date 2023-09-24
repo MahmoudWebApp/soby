@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import TitlePageAdmin from "../../../component/TitlePageAdmin";
 import { useAddNetworkPlayListMutation, useGetAllNetworkPlayListsQuery } from "../../../redux/api/networkPageApi/networkPlayListApi";
 import PlayListsTable from "./PlayListsTable";
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 
 
 
@@ -78,8 +79,7 @@ const PlayListsMng = () => {
             formData.append("title_en", values?.title_en);
             formData.append("subtitle_ar", values?.subtitle_ar);
             formData.append("subtitle_en", values?.subtitle_en);
-            formData.append("content_ar", values?.content_ar);
-            formData.append("content_en", values?.content_en);
+            formData.append("content", JSON.stringify(values?.content))
             formData.append("link", values?.link);
             await addPlayList(formData)
 
@@ -141,12 +141,7 @@ const PlayListsMng = () => {
                                                 <Input />
                                             </Form.Item>
 
-                                            <Form.Item>
-                                                <Upload listType="picture" maxCount={1}
-                                                    accept="image/*"  {...propsImage} >
-                                                    <Button className="bg-[#f7a833] text-white">{`${t("Upload Image")}`}</Button>
-                                                </Upload>
-                                            </Form.Item>
+
 
                                         </div>
                                         <div className="flex flex-col">
@@ -156,20 +151,58 @@ const PlayListsMng = () => {
                                             >
                                                 <Input.TextArea />
                                             </Form.Item>
-                                            <Form.Item label="Description English" name="content_en"
-                                                rules={RulesName({ name: `The Field`, countChar: 1500 })}
 
-                                            >
-                                                <Input.TextArea />
+                                            <Form.Item>
+                                                <Upload listType="picture" maxCount={1}
+                                                    accept="image/*"  {...propsImage} >
+                                                    <Button className="bg-[#f7a833] text-white">{`${t("Upload Image")}`}</Button>
+                                                </Upload>
                                             </Form.Item>
-                                            <Form.Item label="Description Arabic" name="content_ar"
-                                                rules={RulesName({ name: `The Field`, countChar: 1500 })}
-
-                                            >
-                                                <Input.TextArea />
-                                            </Form.Item>
-
                                         </div>
+
+                                    </div>
+                                    <div>
+                                        <Form.List name="content" >
+                                            {(fields, { add, remove }) => (
+                                                <>
+                                                    {fields.map(({ key, name, ...restField }) => (
+                                                        <div className="flex items-center  gap-x-3 mb-6" key={key}>
+                                                            <Form.Item
+                                                                {...restField}
+                                                                name={[name, 'content_en']}
+                                                                rules={[{ required: true },
+                                                                { max: 1024, message: `${t("Content English")} ${t("must be less than 1024 characters.")}` }
+
+                                                                ]}
+                                                                className="w-[47%] mb-0"
+                                                            >
+                                                                <Input.TextArea placeholder={`${t("Content English")}`} autoSize />
+                                                            </Form.Item>
+                                                            <Form.Item
+                                                                {...restField}
+                                                                name={[name, 'content_ar']}
+                                                                rules={[{ required: true },
+                                                                { max: 1024, message: `${t("Content Arabic")} ${t("must be less than 1024 characters.")}` }
+                                                                ]}
+                                                                className="w-[47%] mb-0"
+                                                            >
+                                                                <Input.TextArea placeholder={`${t("Content Arabic")}`} dir="rtl" autoSize />
+                                                            </Form.Item>
+                                                            <MinusCircleOutlined onClick={() => remove(name)} />
+                                                        </div>
+
+
+                                                    ))}
+                                                    <Form.Item>
+                                                        <Button type="dashed" onClick={() => add()} block
+                                                            className="max-w-fit border-[#f7a833] text-[#f7a833]"
+                                                            icon={<PlusOutlined />}>
+                                                            {`${t("Add Content")}`}
+                                                        </Button>
+                                                    </Form.Item>
+                                                </>
+                                            )}
+                                        </Form.List>
                                     </div>
 
                                 </div>
@@ -197,6 +230,9 @@ const PlayListsMng = () => {
                                 ...p, key: `${p?.id}-key`
                             }
                         })} />
+
+
+
                     </div>
                 </Spin>
             </div>

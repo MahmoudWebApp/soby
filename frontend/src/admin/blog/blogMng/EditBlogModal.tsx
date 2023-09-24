@@ -9,7 +9,7 @@ import { t } from "i18next";
 import AddEditModal from "../../../component/addEditModal/AddEditModal";
 import { RulesName } from "../../../utils/RulesValidation";
 import { useEffect, useState } from "react";
-
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { useUpdatePostMutation } from "../../../redux/api/blogPageApi/blogApi";
 
 
@@ -66,11 +66,10 @@ const EditBlogModal: React.FC<{ postData: any }> = (props) => {
             await formPostEdit.validateFields();
             const formData = new FormData();
             formData.append("post_id", props.postData?.id);
-            formData.append("image", imageFile??null);
+            formData.append("image", imageFile ?? null);
             formData.append("title_ar", values?.title_ar);
             formData.append("title_en", values?.title_en);
-            formData.append("content_ar", values?.content_ar);
-            formData.append("content_en", values?.content_en);
+            formData.append("content", JSON.stringify(values?.content))
             formData.append("link", values?.link);
             await updatePost(formData)
 
@@ -116,6 +115,16 @@ const EditBlogModal: React.FC<{ postData: any }> = (props) => {
                                         <Input />
                                     </Form.Item>
 
+
+
+                                </div>
+                                <div className="flex flex-col">
+                                    <Form.Item label="Button Url" name="link"
+                                        rules={RulesName({ name: `The Field`, countChar: 1024 })}
+
+                                    >
+                                        <Input.TextArea />
+                                    </Form.Item>
                                     <Form.Item>
                                         <Upload listType="picture" maxCount={1}
                                             accept="image/*"  {...propsImage} >
@@ -124,29 +133,50 @@ const EditBlogModal: React.FC<{ postData: any }> = (props) => {
                                     </Form.Item>
 
                                 </div>
-                                <div className="flex flex-col">
-                                    <Form.Item label="Button Url" name="link"
-                                        rules={RulesName({ name: `The Field`, countChar: 1024 })}
-
-                                    >
-                                        <Input />
-                                    </Form.Item>
-                                    <Form.Item label="Description English" name="content_en"
-                                        rules={RulesName({ name: `The Field`, countChar: 1500 })}
-
-                                    >
-                                        <Input.TextArea />
-                                    </Form.Item>
-                                    <Form.Item label="Description Arabic" name="content_ar"
-                                        rules={RulesName({ name: `The Field`, countChar: 1500 })}
-
-                                    >
-                                        <Input.TextArea />
-                                    </Form.Item>
-
-                                </div>
                             </div>
+                            <div>
+                                <Form.List name="content" >
+                                    {(fields, { add, remove }) => (
+                                        <>
+                                            {fields.map(({ key, name, ...restField }) => (
+                                                <div className="flex items-center  gap-x-3 mb-6" key={key}>
+                                                    <Form.Item
+                                                        {...restField}
+                                                        name={[name, 'content_en']}
+                                                        rules={[{ required: true },
+                                                        { max: 1024, message: `${t("Content English")} ${t("must be less than 1024 characters.")}` }
 
+                                                        ]}
+                                                        className="w-[47%] mb-0"
+                                                    >
+                                                        <Input.TextArea placeholder={`${t("Content English")}`} autoSize />
+                                                    </Form.Item>
+                                                    <Form.Item
+                                                        {...restField}
+                                                        name={[name, 'content_ar']}
+                                                        rules={[{ required: true },
+                                                        { max: 1024, message: `${t("Content Arabic")} ${t("must be less than 1024 characters.")}` }
+                                                        ]}
+                                                        className="w-[47%] mb-0"
+                                                    >
+                                                        <Input.TextArea placeholder={`${t("Content Arabic")}`} dir="rtl" autoSize />
+                                                    </Form.Item>
+                                                    <MinusCircleOutlined onClick={() => remove(name)} />
+                                                </div>
+
+
+                                            ))}
+                                            <Form.Item>
+                                                <Button type="dashed" onClick={() => add()} block
+                                                    className="max-w-fit border-[#f7a833] text-[#f7a833]"
+                                                    icon={<PlusOutlined />}>
+                                                    {`${t("Add Content")}`}
+                                                </Button>
+                                            </Form.Item>
+                                        </>
+                                    )}
+                                </Form.List>
+                            </div>
                         </div>
 
 

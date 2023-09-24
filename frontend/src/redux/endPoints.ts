@@ -65,6 +65,11 @@ export const endPoints = {
   getEducationAbout: "/api/education",
   addUpdateEducationAbout: "/api/education",
 
+    // Profile pdf AboutPage
+
+    getProfilePdf: "/api/profiles",
+    addUpdateProfilePdf: "/api/profiles",
+
   // Experiences Videos Home
 
   getAllExperiencesVideos: "/api/experience",

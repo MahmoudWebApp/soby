@@ -15,6 +15,7 @@ export { default as EducationAboutMng } from './about/educationAbout/EducationAb
 export { default as ExperienceAboutMng } from './about/experienceAboutMng/ExperienceAboutMng'
 export { default as ProfilePdfMng } from './about/profilePdfMng/ProfilePdfMng'
 export { default as BookAboutMng } from './about/booksAboutMng/BookAboutMng'
+
 //Branding management
 export { default as FaqBrandingMng } from './barnding/faqBrandingMng/faqBrandingMng'
 export { default as StepsBrandingMng } from './barnding/StepsBrandingMng/StepsBrandingMng'

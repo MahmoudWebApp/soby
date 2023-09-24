@@ -3,15 +3,15 @@ import { baseUrl, endPoints } from "../../endPoints";
 import { getTokenFromLocalStorage } from "../../../utils/helpFunctions";
 
 
-export const stepsBrandingApi = createApi({
-    reducerPath: "stepsBrandingApi",
+export const profilePdfApi = createApi({
+    reducerPath: "profilePdfApi",
     baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
-    tagTypes: ['steps'],
+    tagTypes: ['profile-pdf'],
     endpoints: (builder) => ({
-        getAllSteps: builder.query({
+        getProfilePdf: builder.query({
             query: () => {
                 return {
-                    url: endPoints.getAllSteps,
+                    url: endPoints.getProfilePdf,
                     method: "get",
                     headers: {
                         Authorization: `Bearer ${getTokenFromLocalStorage()}`,
@@ -19,12 +19,13 @@ export const stepsBrandingApi = createApi({
                 }
 
             },
-            providesTags: ['steps']
+            providesTags: ['profile-pdf']
         }),
-        addUpdateStep: builder.mutation<object, FormData>({
+
+        AddUpdateProfilePdf: builder.mutation<object, FormData>({
             query: (data) => {
                 return {
-                    url: endPoints.addStep,
+                    url: endPoints.addUpdateProfilePdf,
                     method: "post",
                     headers: {
                         Authorization: `Bearer ${getTokenFromLocalStorage()}`,
@@ -32,12 +33,12 @@ export const stepsBrandingApi = createApi({
                     body: data,
                 };
             },
-            invalidatesTags: ['steps'],
+            invalidatesTags: ['profile-pdf'],
         }),
-      
+
     })
 })
 export const {
-    useGetAllStepsQuery,
-    useAddUpdateStepMutation,
- } = stepsBrandingApi
+    useGetProfilePdfQuery,
+    useAddUpdateProfilePdfMutation
+} = profilePdfApi

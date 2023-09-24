@@ -2,7 +2,7 @@ import {
 
     Button,
     Form,
-    Input, Space, Upload, UploadFile, UploadProps, message
+    Input, Space, Spin, Upload, UploadFile, UploadProps, message
 } from "antd";
 import { t } from "i18next";
 
@@ -19,9 +19,10 @@ import { INetworksProps } from "../../../models/Networks.model";
 
 
 const NetworksHomeMng = () => {
-    const { networks  } = useGetAllNetworksQuery<{ networks: INetworksProps[] }>(undefined, {
-        selectFromResult: ({ data }) => ({
+    const { networks, isLoadingData } = useGetAllNetworksQuery<{ networks: INetworksProps[], isLoadingData: boolean }>(undefined, {
+        selectFromResult: ({ data, isLoading }) => ({
             networks: data?.networks ?? [],
+                isLoadingData: isLoading
         }),
     });
     const [addNetwork, { isSuccess, isLoading }] = useAddNetworkMutation();
@@ -91,97 +92,100 @@ const NetworksHomeMng = () => {
 
             <div className="mt-12 px-12 admin-management">
                 <TitlePageAdmin title={"Home Networks"} />
-                <div className="flex flex-col gap-y-6">
-                    <AddEditModal
-                        btnText={<button
-                            className="bg-soby-yellow-light px-6 py-2 text-white rounded-md text-base w-fit"
-                            onClick={() => setIsModalVisible(true)}>
-                            Add Network
-                        </button>}
-                        title={"Add Network"}
-                        width={"800px"}
-                        isModalVisible={isModalVisible}
-                        setIsModalVisible={setIsModalVisible}
+                <Spin spinning={isLoading || isLoadingData}>
+                    <div className="flex flex-col gap-y-6">
+                        <AddEditModal
+                            btnText={<button
+                                className="bg-soby-yellow-light px-6 py-2 text-white rounded-md text-base w-fit"
+                                onClick={() => setIsModalVisible(true)}>
+                                Add Network
+                            </button>}
+                            title={"Add Network"}
+                            width={"800px"}
+                            isModalVisible={isModalVisible}
+                            setIsModalVisible={setIsModalVisible}
 
-                    >
-                        <Form layout="vertical" form={formNetworksHomeAdd}
-                            name="add-network"
-                            onFinish={onFinish}
-                            className="form-add-student-assessment"
                         >
-                            <div className="grid grid-row-2 gap-y-6">
-                                <div className="grid grid-cols-2 gap-x-6">
-                                    <div className="flex flex-col ">
-                                        <Form.Item label="Title English" name="title_en"
-                                            rules={RulesName({ name: `The Field`, countChar: 50 })}
+                            <Form layout="vertical" form={formNetworksHomeAdd}
+                                name="add-network"
+                                onFinish={onFinish}
+                                className="form-add-student-assessment"
+                            >
+                                <div className="grid grid-row-2 gap-y-6">
+                                    <div className="grid grid-cols-2 gap-x-6">
+                                        <div className="flex flex-col ">
+                                            <Form.Item label="Title English" name="title_en"
+                                                rules={RulesName({ name: `The Field`, countChar: 50 })}
 
-                                        >
-                                            <Input />
-                                        </Form.Item>
-                                        <Form.Item label="Title Arabic" name="title_ar"
-                                            rules={RulesName({ name: `The Field`, countChar: 50 })}
+                                            >
+                                                <Input />
+                                            </Form.Item>
+                                            <Form.Item label="Title Arabic" name="title_ar"
+                                                rules={RulesName({ name: `The Field`, countChar: 50 })}
 
-                                        >
-                                            <Input />
-                                        </Form.Item>
+                                            >
+                                                <Input />
+                                            </Form.Item>
 
-                                        <Form.Item>
-                                            <Upload listType="picture" maxCount={1}
-                                                accept="image/*"  {...propsImage} >
-                                                <Button className="bg-[#f7a833] text-white">{`${t("Upload Icon")}`}</Button>
-                                            </Upload>
-                                        </Form.Item>
+                                            <Form.Item>
+                                                <Upload listType="picture" maxCount={1}
+                                                    accept="image/*"  {...propsImage} >
+                                                    <Button className="bg-[#f7a833] text-white">{`${t("Upload Icon")}`}</Button>
+                                                </Upload>
+                                            </Form.Item>
 
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <Form.Item label="Button Url" name="link"
+                                                rules={RulesName({ name: `The Field`, countChar: 1024 })}
+
+                                            >
+                                                <Input.TextArea />
+                                            </Form.Item>
+                                            <Form.Item label="Description English" name="content_en"
+                                                rules={RulesName({ name: `The Field`, countChar: 1500 })}
+
+                                            >
+                                                <Input.TextArea />
+                                            </Form.Item>
+                                            <Form.Item label="Description Arabic" name="content_ar"
+                                                rules={RulesName({ name: `The Field`, countChar: 1500 })}
+
+                                            >
+                                                <Input.TextArea />
+                                            </Form.Item>
+
+                                        </div>
                                     </div>
-                                    <div className="flex flex-col">
-                                        <Form.Item label="Button Url" name="link"
-                                            rules={RulesName({ name: `The Field`, countChar: 1024 })}
 
-                                        >
-                                            <Input.TextArea />
-                                        </Form.Item>
-                                        <Form.Item label="Description English" name="content_en"
-                                            rules={RulesName({ name: `The Field`, countChar: 1500 })}
-
-                                        >
-                                            <Input.TextArea />
-                                        </Form.Item>
-                                        <Form.Item label="Description Arabic" name="content_ar"
-                                            rules={RulesName({ name: `The Field`, countChar: 1500 })}
-
-                                        >
-                                            <Input.TextArea />
-                                        </Form.Item>
-
-                                    </div>
                                 </div>
 
-                            </div>
 
+                                <Space className="flex  justify-around">
+                                    <Button key="back" onClick={() => {
+                                        formNetworksHomeAdd.resetFields()
+                                        setFileList([]);
+                                        setImageFile('')
+                                        setIsModalVisible(false)
+                                    }} className="bg-soby-yellow-light text-white">
+                                        {`${t("Cancel")}`}
+                                    </Button>,
+                                    <Button key="submit" htmlType="submit" className="bg-soby-gray-blue-gray text-white"
+                                        loading={isLoading}
+                                    >
+                                        {`${t("Save & Send")}`}
+                                    </Button>
+                                </Space>
+                            </Form>
+                        </AddEditModal >
+                        <NetworksHomeTable networksData={networks?.map(n => {
+                            return {
+                                ...n, key: `${n?.id}-key`
+                            }
+                        })} />
+                    </div>
+                </Spin>
 
-                            <Space className="flex  justify-around">
-                                <Button key="back" onClick={() => {
-                                    formNetworksHomeAdd.resetFields()
-                                    setFileList([]);
-                                    setImageFile('')
-                                    setIsModalVisible(false)
-                                }} className="bg-soby-yellow-light text-white">
-                                    {`${t("Cancel")}`}
-                                </Button>,
-                                <Button key="submit" htmlType="submit" className="bg-soby-gray-blue-gray text-white"
-                                    loading={isLoading}
-                                >
-                                    {`${t("Save & Send")}`}
-                                </Button>
-                            </Space>
-                        </Form>
-                    </AddEditModal >
-                    <NetworksHomeTable networksData={networks?.map(n => {
-                        return {
-                            ...n, key: `${n?.id}-key`
-                        }
-                    })} />
-                </div>
 
             </div>
 

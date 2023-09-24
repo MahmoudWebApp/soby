@@ -3,17 +3,18 @@ import TextEnAr from '../../../component/TextEnAr';
 import PopconfirmDelete from '../../../component/popconfirmDelete/PopconfirmDelete';
 import EditBlogModal from './EditBlogModal';
 import { useDeletePostMutation } from '../../../redux/api/blogPageApi/blogApi';
+import ContentSliderModal from '../../home/sliderHeroMng/ContentSliderModal';
 
 
 
 
 const BlogTable: React.FC<{ postsData: any[] }> = (props) => {
-const [deletePost, { isLoading }] = useDeletePostMutation();
+    const [deletePost, { isLoading }] = useDeletePostMutation();
 
     const columns: any[] = [
         {
-            title: "Icon",
-            dataIndex: "icon",
+            title: "Image",
+            dataIndex: "image",
             render: (text: any) => {
                 return <img src={text} className='w-[50px]  mx-auto' alt='' />;
             },
@@ -42,17 +43,17 @@ const [deletePost, { isLoading }] = useDeletePostMutation();
         },
 
         {
-            title: <TextEnAr t1={'Description'} t2={'English'} />,
-            dataIndex: "content_en",
-            render: (text: any) => {
-                return <><p className='text-word-dark text-sm'>{text}</p></>;
-            },
-        },
-        {
-            title: <TextEnAr t1={'Description'} t2={'Arabic'} />,
-            dataIndex: "content_ar",
-            render: (text: any) => {
-                return <><p className='text-word-dark text-sm'>{text}</p></>;
+            title: "Content",
+            dataIndex: "",
+            width: "5%",
+            render: (record: any) => {
+                return <>
+                    <ContentSliderModal contents={record?.content?.map((c:any) =>{
+                        return{
+                            ...c,key:c?.content_en
+                        }
+                    })} />
+                </>;
             },
         },
         {

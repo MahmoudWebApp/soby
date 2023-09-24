@@ -3,13 +3,14 @@ import TextEnAr from '../../../component/TextEnAr';
 import PopconfirmDelete from '../../../component/popconfirmDelete/PopconfirmDelete';
 import { useDeleteNetworkPlayListMutation } from '../../../redux/api/networkPageApi/networkPlayListApi';
 import EditPlayListModal from './EditPlayListModal';
+import ContentSliderModal from '../../home/sliderHeroMng/ContentSliderModal';
 
 
 
 
 
 const PlayListsTable: React.FC<{ playlistsData: any[] }> = (props) => {
-const [deletePlayList, { isLoading }] = useDeleteNetworkPlayListMutation();
+    const [deletePlayList, { isLoading }] = useDeleteNetworkPlayListMutation();
 
     const columns: any[] = [
         {
@@ -57,17 +58,17 @@ const [deletePlayList, { isLoading }] = useDeleteNetworkPlayListMutation();
         },
 
         {
-            title: <TextEnAr t1={'Description'} t2={'English'} />,
-            dataIndex: "content_en",
-            render: (text: any) => {
-                return <><p className='text-word-dark text-sm'>{text}</p></>;
-            },
-        },
-        {
-            title: <TextEnAr t1={'Description'} t2={'Arabic'} />,
-            dataIndex: "content_ar",
-            render: (text: any) => {
-                return <><p className='text-word-dark text-sm'>{text}</p></>;
+            title: "Content",
+            dataIndex: "",
+            width: "5%",
+            render: (record: any) => {
+                return <>
+                    <ContentSliderModal contents={record?.content?.map((c: any) => {
+                        return {
+                            ...c, key: c?.content_en
+                        }
+                    })} />
+                </>;
             },
         },
         {

@@ -25,6 +25,7 @@ import { faqBrandingApi } from './api/brandingPageApi/faqBrandingApi';
 import { stepsBrandingApi } from './api/brandingPageApi/stepsBrandingApi';
 import { sufferBrandingApi } from './api/brandingPageApi/sufferBrandingApi';
 import { landingPageBrandingApi } from './api/brandingPageApi/landingPageBrandingApi';
+import { profilePdfApi } from './api/aboutPageApi/profilePdfApi';
 
 
 export const store = configureStore({
@@ -46,6 +47,7 @@ export const store = configureStore({
         [educationAboutApi.reducerPath]: educationAboutApi.reducer,
         [experiencesVideosHomeApi.reducerPath]: experiencesVideosHomeApi.reducer,
         [booksAboutApi.reducerPath]: booksAboutApi.reducer,
+        [profilePdfApi.reducerPath]:profilePdfApi.reducer,
         // Branding Page
         [trainersApi.reducerPath]: trainersApi.reducer,
         [faqBrandingApi.reducerPath]: faqBrandingApi.reducer,
@@ -88,6 +90,7 @@ export const store = configureStore({
             stepsBrandingApi.middleware,
             sufferBrandingApi.middleware,
             landingPageBrandingApi.middleware,
+            profilePdfApi.middleware
 
         ]),
 })
