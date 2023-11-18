@@ -4,20 +4,21 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
 import 'swiper/css/a11y';
-import iconComany from '../../../assets/img/company-logo.png'
 import { useEffect, useState } from 'react';
 import { useGetAllCompaniesQuery } from '../../../redux/api/homePageApi/companiesHomeApi';
 import { Spin } from 'antd';
+import { t } from 'i18next';
 
 
 const Companies = () => {
+    const [dir] = useState(localStorage.getItem("lang"));
+    const classLang = dir === "ar" ? "font-almarai" : "font-roboto";
     const { companies, isLoadingData } = useGetAllCompaniesQuery<{ companies: any[], isLoadingData: boolean }>(undefined, {
         selectFromResult: ({ data, isLoading }) => ({
             companies: data?.companies ?? [],
             isLoadingData: isLoading
         }),
     });
-    console.log(companies);
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     useEffect(() => {
@@ -29,27 +30,18 @@ const Companies = () => {
             window.removeEventListener('resize', handleWindowResize);
         };
     });
-    const companiesData: any[] = [
-        { id: "c_1", icon: iconComany },
-        { id: "c_2", icon: iconComany },
-        { id: "c_3", icon: iconComany },
-        { id: "c_4", icon: iconComany },
-        { id: "c_5", icon: iconComany },
-        { id: "c_6", icon: iconComany },
-        { id: "c_7", icon: iconComany },
-        { id: "c_8", icon: iconComany },
-    ]
+
     return (
         <Spin spinning={isLoadingData}>
 
 
-            <div className="flex flex-col  gap-12  lg:py-[80px] md:py-[60px] py-[20px] lg:px-28 px-6 bg-white">
+            <div className={`flex flex-col  gap-12  lg:py-[80px] md:py-[60px] py-[20px] lg:px-28 px-6 bg-white ${classLang}`}>
                 <div className="flex flex-col gap-y-3">
                     <h4 className="text-soby-yellow-light lg:text-5xl md:text-4xl text-3xl   font-semibold">
-                        Companies
+                        {`${t("Empowered")}`}
                     </h4>
                     <h3 className="text-soby-gray-blue-gray lg:text-7xl md:text-6xl text-5xl font-bold">
-                        We Serve
+                        {`${t("Clients")}`}
                     </h3>
 
                 </div>
@@ -62,8 +54,8 @@ const Companies = () => {
                         autoplay
 
                     >
-                        {companiesData?.map(x => <SwiperSlide key={x.id}>
-                            <img src={x.icon} className='w-[132px] h-[133px]' />
+                        {companies?.map(x => <SwiperSlide key={x.id}>
+                            <img src={x?.image} className='w-[132px] h-[133px]' />
                         </SwiperSlide>)}
                     </Swiper>
 

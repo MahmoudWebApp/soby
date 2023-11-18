@@ -1,6 +1,6 @@
 import logo from "../assets/svg/soby logo.svg";
 import MainMenu from "../component/MainMenu";
-import SocialMenu from "../component/SocialMenu";
+// import SocialMenu from "../component/SocialMenu";
 
 import { t } from "i18next";
 import { NavLink } from "react-router-dom";
@@ -21,12 +21,12 @@ const HeaderSoby = () => {
           <MainMenu classesText={"xl:text-base  md:text-sm text-lg"} />
           <LangSwitcher />
         </div>
-        <div className="hidden  md:flex sm:gap-x-1 sm:items-center xl:ml-6 md:ml-0">
+        {/* <div className="hidden  md:flex sm:gap-x-1 sm:items-center xl:ml-6 md:ml-0">
           <SocialMenu colorIcon={"blue"} />
-        </div>
+        </div> */}
         <div className="hidden  md:flex justify-start items-center ">
           <SobyButton
-            title={`${t("Hire me!")}`}
+            title={`${t("Schedule Your Insight")}`}
             bgColor="bg-soby-yellow-light"
             textColor="text-soby-light-1"
           />

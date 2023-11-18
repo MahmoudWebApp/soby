@@ -4,8 +4,11 @@ import AnonymousRoute from "./nonymousRoute";
 import WebsiteLayout from "../layout/WebsiteLayout";
 import AdminRoute from "./adminRoute";
 import AdminLayout from "../layout/AdminLayout";
-import { BannerHomeMng, BlogMng, BookAboutMng, BrandAboutMng, CliftonAboutMng, CompaniesHomeMng, CoursesMng, EducationAboutMng, ExperienceAboutMng, FaqBrandingMng, HomeAboutMng, MissionVisionMng, NetworksHomeMng, PlayListsMng, ProfilePdfMng, SliderHeroMng, StartPage, StepsBrandingMng, StoryAboutMng, SufferMng, TestimonialsMng, TrainersMng, TrainingMng } from "../admin";
+import { BannerHomeMng, BlogMng, BookAboutMng, BrandAboutMng, CliftonAboutMng,
+   CompaniesHomeMng, CoursesMng, EducationAboutMng, ExperienceAboutMng, FaqBrandingMng, HomeAboutMng, 
+   InvestmentsMng, LandingPageMng, LessonsMng, MissionVisionMng, NetworksHomeMng, PlayListsMng, ProfilePdfMng, SliderHeroMng, StartPage, StepsBrandingMng, StoryAboutMng, SufferMng, TestimonialsMng, TrainersMng, TrainingMng } from "../admin";
 import PageLoadBook from "../pages/PageLoadBook";
+
 
 const index = () => {
   return (
@@ -41,18 +44,21 @@ const index = () => {
         <Route path="/admin/home/networks" element={<NetworksHomeMng />} />
         {/* About Management */}
         <Route path="/admin/about/vision-mission" element={<MissionVisionMng />} />
-        <Route path="/admin/about/story" element={<StoryAboutMng />} />
-        <Route path="/admin/about/brand" element={<BrandAboutMng />} />
-        <Route path="/admin/about/clifton" element={<CliftonAboutMng />} />
+        <Route path="/admin/about/brand" element={<StoryAboutMng />} />
+        <Route path="/admin/about/promise" element={<BrandAboutMng />} />
+        <Route path="/admin/about/strengths" element={<CliftonAboutMng />} />
         <Route path="/admin/about/education" element={<EducationAboutMng />} />
         <Route path="/admin/about/experience" element={<ExperienceAboutMng />} />
         <Route path="/admin/about/books" element={<BookAboutMng />} />
         <Route path="/admin/about/profile-pdf" element={<ProfilePdfMng />} />
         {/* Branding Management */}
+        <Route path="/admin/branding/landing-page" element={< LandingPageMng />} />
         <Route path="/admin/branding/faq" element={< FaqBrandingMng />} />
         <Route path="/admin/branding/steps" element={< StepsBrandingMng />} />
         <Route path="/admin/branding/trainers" element={< TrainersMng />} />
         <Route path="/admin/branding/suffer" element={< SufferMng />} />
+        <Route path="/admin/branding/lessons" element={<LessonsMng/>}/>
+        <Route path="/admin/branding/investments" element={< InvestmentsMng />} />
         {/* Training Management */}
         <Route path="/admin/training" element={<TrainingMng />} />
         {/* Blog Management */}

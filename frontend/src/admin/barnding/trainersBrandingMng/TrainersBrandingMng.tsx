@@ -160,7 +160,7 @@ const TrainersMng = () => {
                                             <Form.Item>
                                                 <Upload listType="picture" maxCount={1}
                                                     accept="image/*"  {...propsImage} >
-                                                    <Button className="bg-[#f7a833] text-white">{`${t("Upload Image Testimonials")}`}</Button>
+                                                    <Button className="bg-[#f7a833] text-white">{`${t("Upload Image")}`}</Button>
                                                 </Upload>
                                             </Form.Item>
                                         </div>

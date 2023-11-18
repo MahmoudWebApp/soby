@@ -65,26 +65,32 @@ export const endPoints = {
   getEducationAbout: "/api/education",
   addUpdateEducationAbout: "/api/education",
 
-    // Profile pdf AboutPage
+  // Profile pdf AboutPage
 
-    getProfilePdf: "/api/profiles",
-    addUpdateProfilePdf: "/api/profiles",
+  getProfilePdf: "/api/profiles",
+  addUpdateProfilePdf: "/api/profiles",
 
-  // Experiences Videos Home
+  // Experiences Images About
 
-  getAllExperiencesVideos: "/api/experience",
-  addExperienceVideo: "/api/experience",
-  deleteExperienceVideo: "/api/experience/",
+  getAllExperiencesImages: "/api/experience-image",
+  addExperienceImage: "/api/experience-image",
+  deleteExperienceImage: "/api/experience-image/",
 
-  // Books Home
+  getAllExperiencesContents: "/api/experience",
+  addUpdateExperienceContents: "/api/experience",
+
+ 
+
+
+  // Books About
   getAllBooks: "/api/book",
   addBook: "/api/book",
   updateBook: "/api/book/update",
   deleteBook: "/api/book/",
 
   // Landing Page Branding
-  getLandingPage: "/api/",
-  addUpdateLandingPage: "/api/",
+  getLandingPage: "/api/personalBrand",
+  addUpdateLandingPage: "/api/personalBrand",
 
   // Suffer Branding
   getSuffer: "/api/suffer",
@@ -108,20 +114,30 @@ export const endPoints = {
   updateTrainer: "/api/trainers/update",
   deleteTrainer: "/api/trainers/",
 
+   // Investment About
 
-  // Training Page Home
+   getAllInvestments: "/api/investment",
+   addUpdateInvestment: "/api/investment",
+
+   // lessons Branding
+   getAllLessons: "/api/lessons",
+   addUpdateLesson: "/api/lessons",
+
+
+
+  // Training 
   getAllTrainings: "/api/training",
   addTraining: "/api/training",
   updateTraining: "/api/training/update",
   deleteTraining: "/api/training/",
 
-  // Course Page Home
+  // Course 
   getAllCourses: "/api/courses",
   addCourse: "/api/courses",
   updateCourse: "/api/courses/update",
   deleteCourse: "/api/courses/",
 
-  // Network Playlists Page Home
+  // Network Playlists 
   getAllNetworkPlayLists: "/api/playlists",
   addNetworkPlayList: "/api/playlists",
   updateNetworkPlayList: "/api/playlists/update",
@@ -129,16 +145,20 @@ export const endPoints = {
 
 
   // Blog Page Home
-  getAllPosts: "",
-  addPost: "",
-  updatePost: "/update",
-  deletePost: "/",
+  getAllPosts: "/api/blogs",
+  addPost: "/api/blogs",
+  updatePost: "/api/blogs/update",
+  deletePost: "/api/blogs/",
 
   //Form Gifts
   getAllVisitors: "/api/forms",
   sendFormGifts: "/api/forms",
   getBookGift: "/api/forms/book",
-  addBookForGift: "/api/forms/book"
+  addBookForGift: "/api/forms/book",
+
+    //Form Gifts
+  getAllAppointments: "/api/appointments",
+  sendFormAppointments: "/api/appointments",
 
 
 

@@ -103,7 +103,7 @@ const ProfilePdfMng = () => {
   }
   return (
     <div className="mt-12 px-12 admin-management">
-      <TitlePageAdmin title={"About Profile"} />
+      <TitlePageAdmin title={"Profile Files"} />
       <div className="flex flex-col gap-y-6 mt-3">
         <Spin spinning={isLoading || isLoadingData}>
 

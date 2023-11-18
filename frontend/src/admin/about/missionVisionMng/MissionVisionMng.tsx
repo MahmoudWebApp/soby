@@ -81,7 +81,7 @@ const MissionVisionMng = () => {
                             <div className="grid grid-row-2 gap-y-6">
                                 {/* Mission */}
                                 <div className="flex flex-col bg-soby-light-1 border p-3 rounded-lg">
-                                    <TitlePageAdmin title={"About Mission"} />
+                                    <TitlePageAdmin title={"Profile Mission"} />
                                     <div className="grid grid-row-2 gap-y-6">
                                         <div>
                                             <div className="flex  gap-x-6">
@@ -165,7 +165,7 @@ const MissionVisionMng = () => {
 
                                 {/* Vision */}
                                 <div className="flex flex-col bg-soby-light-1 border p-3 rounded-lg">
-                                    <TitlePageAdmin title={"About Vision "} />
+                                    <TitlePageAdmin title={"Profile Vision "} />
                                     <div className="grid grid-row-2 gap-y-6">
                                         <div>
                                             <div className="flex  gap-x-6">

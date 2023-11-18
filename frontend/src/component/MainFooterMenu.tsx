@@ -13,32 +13,32 @@ const MainFooterMenu: React.FC<{ classesText: string }> = ({ classesText }) => {
     const mainMenu: IMainMenu[] = [
         {
             key: "key_about",
-            name: `${t("About")}`,
+            name: `${t("Profile")}`,
             url: "/about",
         },
         {
             key: "key_branding",
-            name: `${t("Branding")}`,
+            name: `${t("Persona")}`,
             url: "/branding",
         },
-        {
-            key: "key_training",
-            name: `${t("Training")}`,
-            url: "/training",
-        },
-        {
-            key: "key_publications",
-            name: `${t("Publications")}`,
-            url: "/publications",
-        },
+        // {
+        //     key: "key_training",
+        //     name: `${t("Training")}`,
+        //     url: "/training",
+        // },
+        // {
+        //     key: "key_publications",
+        //     name: `${t("Publications")}`,
+        //     url: "/publications",
+        // },
         {
             key: "key_blog",
-            name: `${t("Blog")}`,
+            name: `${t("Musings")}`,
             url: "/blog",
         },
         {
             key: "key_courses",
-            name: `${t("Courses")}`,
+            name: `${t("Freebies")}`,
             url: "/courses",
         },
         {

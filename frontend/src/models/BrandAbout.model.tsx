@@ -8,4 +8,6 @@ export interface IBrandAboutProps {
     content_ar: string;
     content_en: string;
     image:string;
+    content:any[],
+    video_link:string
 }

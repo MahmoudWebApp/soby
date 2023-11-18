@@ -17,10 +17,13 @@ export { default as ProfilePdfMng } from './about/profilePdfMng/ProfilePdfMng'
 export { default as BookAboutMng } from './about/booksAboutMng/BookAboutMng'
 
 //Branding management
+export { default as LandingPageMng } from './barnding/landingPageBrandingMng/LandingPageBrandingMng'
 export { default as FaqBrandingMng } from './barnding/faqBrandingMng/faqBrandingMng'
 export { default as StepsBrandingMng } from './barnding/StepsBrandingMng/StepsBrandingMng'
 export { default as TrainersMng } from './barnding/trainersBrandingMng/TrainersBrandingMng'
 export { default as SufferMng } from './barnding/sufferBrandingMng/SufferBrandingMng'
+export { default as LessonsMng } from './barnding/lessonsBrandingMng/LessonsBrandingMng'
+export { default as InvestmentsMng } from './barnding/investmentsBrandingMng/InvestmentsBrandingMng'
 //Training  management
 export { default as TrainingMng } from "./training/trainingMng/TrainingMng"
 //Blog  management

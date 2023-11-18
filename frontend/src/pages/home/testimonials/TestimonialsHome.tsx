@@ -1,5 +1,4 @@
 import TestimonialCard from "./TestimonialCard"
-import testImage from "../../../assets/img/testimonial-1.png"
 import { Autoplay, Navigation, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -11,9 +10,13 @@ import { useGetAllTestimonialsQuery } from "../../../redux/api/homePageApi/Testi
 import { Spin } from "antd";
 import { ITestimonialsProps } from "../../../models/Testimonilas.model";
 import { useGetAllTestimonialsVideosQuery } from "../../../redux/api/homePageApi/testimoialsVideos";
+import { t } from "i18next";
 
 
 const TestimonialsHome = () => {
+    const [dir] = useState(localStorage.getItem("lang"));
+    const classLang = dir === "ar" ? "font-almarai" : "font-roboto";
+    const lang = localStorage.getItem("lang")
     const { testimonials, isLoadingData } = useGetAllTestimonialsQuery<{ testimonials: ITestimonialsProps[], isLoadingData: boolean }>(undefined, {
         selectFromResult: ({ data, isLoading }) => ({
             testimonials: data?.testimonials ?? [],
@@ -26,7 +29,7 @@ const TestimonialsHome = () => {
             isLoadingDataVideo: isLoading
         }),
     });
-    console.log(testimonials, testimonialsVideos);
+    console.log("testimonials:", testimonialsVideos);
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     useEffect(() => {
@@ -38,31 +41,15 @@ const TestimonialsHome = () => {
             window.removeEventListener('resize', handleWindowResize);
         };
     });
-    const testimonialsData: any[] = [
-        { id: 't-1', name: "Sarah Collin", title: "position", imgSr: testImage, description: "After a day at Giraffe, I recognize that my little Angel - Jolie is more and more confident and creative. She loves to raise her voice anytime with her wonder which hardly happen before." },
-        { id: 't-2', name: "Sarah Collin", title: "position", imgSr: testImage, description: "After a day at Giraffe, I recognize that my little Angel - Jolie is more and more confident and creative. She loves to raise her voice anytime with her wonder which hardly happen before." },
-        { id: 't-3', name: "Sarah Collin", title: "position", imgSr: testImage, description: "After a day at Giraffe, I recognize that my little Angel - Jolie is more and more confident and creative. She loves to raise her voice anytime with her wonder which hardly happen before." },
-        { id: 't-4', name: "Sarah Collin", title: "position", imgSr: testImage, description: "After a day at Giraffe, I recognize that my little Angel - Jolie is more and more confident and creative. She loves to raise her voice anytime with her wonder which hardly happen before." },
-        { id: 't-5', name: "Sarah Collin", title: "position", imgSr: testImage, description: "After a day at Giraffe, I recognize that my little Angel - Jolie is more and more confident and creative. She loves to raise her voice anytime with her wonder which hardly happen before." }
-    ]
-    const testimonialsVideosDemo: any[] = [
-        { id: 'v-1', videoSrc: "" },
-        { id: 'v-1', videoSrc: "" },
-        { id: 'v-1', videoSrc: "" },
-        { id: 'v-1', videoSrc: "" },
-        { id: 'v-1', videoSrc: "" },
-
-    ]
-
     return (
         <Spin spinning={isLoadingData || isLoadingDataVideo}>
-            <div className=" lg:py-[80px] md:py-[60px] py-[40px] lg:px-28 px-6 bg-soby-light-1">
+            <div className={`lg:py-[80px] md:py-[60px] py-[40px] lg:px-28 px-6 bg-soby-light-1 ${classLang}`}>
                 <div className="flex flex-col gap-y-3">
                     <h4 className="text-soby-yellow-light lg:text-5xl md:text-4xl text-3xl  font-semibold">
-                        Don’t hear only from us
+                        {`${t("Voices of Trust:")}`}
                     </h4>
                     <h3 className="text-soby-gray-blue-gray lg:text-7xl md:text-6xl text-5xl font-bold">
-                        Testimonials
+                        {`${t("Testimonials")}`}
                     </h3>
 
                 </div>
@@ -73,8 +60,11 @@ const TestimonialsHome = () => {
                         slidesPerView={windowWidth <= 1024 ? windowWidth <= 757 ? 1 : 2 : 3}
                         autoplay
                     >
-                        {testimonialsData?.map(x => <SwiperSlide key={x.key}>
-                            <TestimonialCard imgSrc={x.imgSr} name={x.name} title={x.title} description={x.description} key={x.id} />
+                        {testimonials?.map(x => <SwiperSlide key={x?.id}>
+                            <TestimonialCard imgSrc={x?.image}
+                                name={lang === "en" ? x?.name_en : x?.name_ar}
+                                title={lang === "en" ? x?.position_en : x?.position_ar}
+                                description={lang === "en" ? x?.content_en : x?.content_ar} />
                         </SwiperSlide>)}
                     </Swiper>
 
@@ -87,13 +77,21 @@ const TestimonialsHome = () => {
                         autoplay
 
                     >
-                        {testimonialsVideosDemo?.map(c => <SwiperSlide key={c.key}>
+                        {testimonialsVideos?.map(c => <SwiperSlide key={c.id}>
 
-                            <video controls controlsList=" timeline volume"
+                            {/* <video controls controlsList=" timeline volume"
                                 poster="https://placehold.co/408x286"
-                                src={c.videoSrc}
+                                src={c?.video}
                                 className="w-[408px]
-                            h-[286px]" />
+                            h-[286px]" /> */}
+                            <iframe width="408" height="286" 
+                           src={c?.video_link}
+                                title="YouTube video player" frameBorder="0"
+                                allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen>
+
+                            </iframe>
                         </SwiperSlide>)}
                     </Swiper>
                 </div>

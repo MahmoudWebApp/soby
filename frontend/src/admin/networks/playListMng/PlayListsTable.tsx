@@ -13,17 +13,17 @@ const PlayListsTable: React.FC<{ playlistsData: any[] }> = (props) => {
     const [deletePlayList, { isLoading }] = useDeleteNetworkPlayListMutation();
 
     const columns: any[] = [
+        // {
+        //     title: "Image",
+        //     dataIndex: "image",
+        //     render: (text: any) => {
+        //         return <img src={text} className='w-[50px]  mx-auto' alt='' />;
+        //     },
+        // },
         {
-            title: "Image",
-            dataIndex: "image",
-            render: (text: any) => {
-                return <img src={text} className='w-[50px]  mx-auto' alt='' />;
-            },
-        },
-        {
-            title: <TextEnAr t1={'Button'} t2={'Link'} />,
+            title: <TextEnAr t1={'PlayList'} t2={'Link'} />,
             dataIndex: "link",
-            width: "5%",
+            
             render: (text: any) => {
                 return <>{text ? <Tag color='green'>Have Url</Tag> : <Tag color='red'>No Have Url</Tag>}</>;
             },
@@ -42,20 +42,20 @@ const PlayListsTable: React.FC<{ playlistsData: any[] }> = (props) => {
                 return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
             },
         },
-        {
-            title: <TextEnAr t1={'Sub Title'} t2={'English'} />,
-            dataIndex: "subtitle_en",
-            render: (text: any) => {
-                return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
-            },
-        },
-        {
-            title: <TextEnAr t1={'Sub Title'} t2={'Arabic'} />,
-            dataIndex: "subtitle_ar",
-            render: (text: any) => {
-                return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
-            },
-        },
+        // {
+        //     title: <TextEnAr t1={'Sub Title'} t2={'English'} />,
+        //     dataIndex: "subtitle_en",
+        //     render: (text: any) => {
+        //         return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
+        //     },
+        // },
+        // {
+        //     title: <TextEnAr t1={'Sub Title'} t2={'Arabic'} />,
+        //     dataIndex: "subtitle_ar",
+        //     render: (text: any) => {
+        //         return <><h3 className='text-word-dark text-lg'>{text}</h3></>;
+        //     },
+        // },
 
         {
             title: "Content",

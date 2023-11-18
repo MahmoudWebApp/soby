@@ -12,6 +12,14 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
     const [deleteSlide, { isLoading }] = useDeleteSlideMutation();
     const columns: any[] = [
         {
+            title: "Number",
+            dataIndex: "slide_number",
+            width: "10%",
+            render: (text: any) => {
+                return <><h3 className='text-word-dark text-sm'>{text}</h3></>;
+            },
+        },
+        {
             title: "Avatar",
             dataIndex: "image",
             width: "10%",
@@ -56,7 +64,7 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
             dataIndex: "profile_link",
             width: "5%",
             render: (text: any) => {
-                return <>{text ? <Tag color='green' className='text-xs'>Have Url</Tag> : <Tag color='red' className='text-xs'>No Have Url</Tag>}</>;
+                return <>{text && text !== "null" ? <Tag color='green' className='text-xs'>Have Url</Tag> : <Tag color='red' className='text-xs'>No Have Url</Tag>}</>;
             },
         },
         {
@@ -64,7 +72,7 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
             dataIndex: "videos_link",
             width: "5%",
             render: (text: any) => {
-                return <>{text ? <Tag color='green' className='text-xs'>Have Url</Tag> : <Tag color='red' className='text-xs'>No Have Url</Tag>}</>;
+                return <>{text && text !== "null" ? <Tag color='green' className='text-xs'>Have Url</Tag> : <Tag color='red' className='text-xs'>No Have Url</Tag>}</>;
             },
         },
         {
@@ -72,7 +80,7 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
             dataIndex: "brochure",
             width: "5%",
             render: (text: any) => {
-                return <>{text ? <Tag color='green' className='text-xs'>Have Url</Tag> : <Tag color='red' className='text-xs'>No Have Url</Tag>}</>;
+                return <>{text && text !== "null" ? <Tag color='green' className='text-xs'>Have Url</Tag> : <Tag color='red' className='text-xs'>No Have Url</Tag>}</>;
             },
         },
         {
@@ -80,7 +88,7 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
             dataIndex: "link",
             width: "5%",
             render: (text: any) => {
-                return <>{text ? <Tag color='green' className='text-xs'>Have Url</Tag> : <Tag color='red' className='text-xs'>No Have Url</Tag>}</>;
+                return <>{text && text !== "null" ? <Tag color='green' className='text-xs'>Have Url</Tag> : <Tag color='red' className='text-xs'>No Have Url</Tag>}</>;
             },
         },
         {
@@ -89,9 +97,9 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
             width: "5%",
             render: (record: any) => {
                 return <>
-                      <ContentSliderModal contents={record?.content?.map((c:any) =>{
-                        return{
-                            ...c,key:c?.content_en
+                    <ContentSliderModal contents={record?.content?.map((c: any) => {
+                        return {
+                            ...c, key: c?.content_en
                         }
                     })} />
                 </>;
@@ -120,7 +128,9 @@ const SliderHeroTable: React.FC<{ sliderData: any[] }> = (props) => {
 
     ];
     return (
-        <Table columns={columns} dataSource={props.sliderData} bordered />
+        <Table columns={columns} dataSource={props.sliderData} bordered
+     scroll={{x:true}}
+        />
     )
 }
 

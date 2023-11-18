@@ -1,18 +1,21 @@
 import { t } from "i18next"
 import ConsultationForm from "./ConsultationForm"
+import { useState } from "react";
 
 
 
 const Consultation = () => {
+    const [dir] = useState(localStorage.getItem("lang"));
+    const classLang = dir === "ar" ? "font-almarai" : "font-roboto";
     return (
-        <div className="flex md:flex-row  gap-12 flex-col lg:py-[80px] md:py-[60px] py-[40px] lg:px-28 px-6 bg-soby-light-2">
+        <div className={`flex md:flex-row  gap-12 flex-col lg:py-[80px] md:py-[60px] py-[40px] lg:px-28 px-6 bg-soby-light-2 ${classLang}`}>
 
             <div className="flex flex-col gap-y-3 w-full">
                 <h4 className="text-soby-yellow-light lg:text-5xl md:text-4xl text-3xl   font-semibold">
-                    Book
+                         {`${t("Book")}`}
                 </h4>
                 <h3 className="text-soby-gray-blue-gray lg:text-7xl md:text-6xl text-5xl font-bold">
-                    A Consultation
+                     {`${t("A Consultation")}`}
                 </h3>
                 <div className="mt-6 ">
                     <h5 className="xl:text-xl  text-xs  text-soby-gray-dark-4 font-extrabold mb-2 word-break">

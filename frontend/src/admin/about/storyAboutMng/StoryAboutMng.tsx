@@ -59,7 +59,7 @@ const StoryAboutMng = () => {
     }
     return (
         <div className="mt-12 px-12 admin-management">
-            <TitlePageAdmin title={"About Story"} />
+            <TitlePageAdmin title={"Profile Story"} />
             <div className="flex flex-col gap-y-6 mt-3">
                 <Spin spinning={isLoading || isLoadingData}>
 
@@ -106,14 +106,23 @@ const StoryAboutMng = () => {
                                 </div>
                                 <div className="flex flex-col justify-center items-center gap-y-12 mb-6">
                                     <Form.Item label="Video Link" name="video_link"
-                                        rules={RulesName({ name: `The Field`, countChar: 50 })}
+                                        rules={RulesName({ name: `The Field`, countChar: 1500 })}
                                         className="w-full"
                                     >
                                         <Input.TextArea />
                                     </Form.Item>
-                                    <video controls controlsList=" timeline volume"
-                                        src={storyAboutData?.video_link}
-                                        className="w-[200px]  h-[200px] md:rounded-3xl rounded-lg border bg-[#ccc]" />
+                                    {
+                                        storyAboutData?.video_link?.includes("https") &&
+                                        <iframe className="w-[500px] sm:w-full" height="392"
+                                            src={storyAboutData?.video_link}
+                                            title="YouTube video player" frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; 
+                     encrypted-media; gyroscope; picture-in-picture; web-share"
+                                            allowFullScreen>
+
+                                        </iframe>
+                                    }
+
                                 </div>
 
                             </div>

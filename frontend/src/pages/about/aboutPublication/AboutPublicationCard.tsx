@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 interface IProps {
@@ -22,7 +23,7 @@ const AboutPublicationCard: React.FC<IProps> = (props) => {
             <button className='rounded-3xl bg-soby-gray-blue-gray text-base w-fit text-white px-4 py-2'
                 onClick={() => navigate(props.findMoreUrl)}
             >
-                Find out more
+                {`${t("Find out more")}`}
             </button>
         </div>
     )

@@ -13,7 +13,16 @@ const TestimonialsVideosTable: React.FC<{ testimonialsVideosData: any[] }> = (pr
             title: "Video",
             dataIndex: "video_link",
             render: (text: any) => {
-                return <><p className='text-word-dark text-xs'>{text}</p></>;
+                return <div className="flex justify-center">
+                    <iframe className="sm:w-[250px] w-full" height="192"
+                        src={text}
+                        title="YouTube video player" frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen>
+
+                    </iframe>
+                </div>
             },
         },
         {

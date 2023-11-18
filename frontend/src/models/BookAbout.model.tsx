@@ -7,4 +7,5 @@ export interface IBooksAboutProps {
     content_en: string;
     link: string;
     image: any
+    video_link:string;
 }

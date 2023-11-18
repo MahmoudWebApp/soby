@@ -15,7 +15,7 @@ const [deleteNetwork, { isLoading }] = useDeleteNetworkMutation();
             title: "Icon",
             dataIndex: "icon",
             render: (text: any) => {
-                return <img src={text} className='w-[50px]  mx-auto' alt='' />;
+                return <img src={text} className='w-[250px]  mx-auto' alt='' />;
             },
         },
         {

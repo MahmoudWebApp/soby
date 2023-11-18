@@ -3,15 +3,15 @@ import { baseUrl, endPoints } from "../../endPoints";
 import { getTokenFromLocalStorage } from "../../../utils/helpFunctions";
 
 
-export const experiencesVideosHomeApi = createApi({
-    reducerPath: "experiencesVideosHomeApi",
+export const experiencesAboutApi = createApi({
+    reducerPath: "experiencesAboutApi",
     baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
-    tagTypes: ['experiencesVideos'],
+    tagTypes: ['experiences', 'experiences-images'],
     endpoints: (builder) => ({
-        getAllExperiencesVideos: builder.query({
+        getAllExperiencesTexts: builder.query({
             query: () => {
                 return {
-                    url: endPoints.getAllExperiencesVideos,
+                    url: endPoints.getAllExperiencesContents,
                     method: "get",
                     headers: {
                         Authorization: `Bearer ${getTokenFromLocalStorage()}`,
@@ -19,12 +19,12 @@ export const experiencesVideosHomeApi = createApi({
                 }
 
             },
-            providesTags: ['experiencesVideos']
+            providesTags: ['experiences']
         }),
-        addExperienceVideo: builder.mutation<object, FormData>({
+        addUpdateExperienceText: builder.mutation<object, FormData>({
             query: (data) => {
                 return {
-                    url: endPoints.addExperienceVideo,
+                    url: endPoints.addUpdateExperienceContents,
                     method: "post",
                     headers: {
                         Authorization: `Bearer ${getTokenFromLocalStorage()}`,
@@ -32,25 +32,55 @@ export const experiencesVideosHomeApi = createApi({
                     body: data,
                 };
             },
-            invalidatesTags: ['experiencesVideos'],
+            invalidatesTags: ['experiences'],
         }),
 
-        deleteExperienceVideo: builder.mutation({
-            query: ({ experienceVideo_id }) => {
+        getAllExperiencesImage: builder.query({
+            query: () => {
                 return {
-                    url: `${endPoints.deleteExperienceVideo}${experienceVideo_id}`,
+                    url: endPoints.getAllExperiencesImages,
+                    method: "get",
+                    headers: {
+                        Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+                    },
+                }
+
+            },
+            providesTags: ['experiences-images']
+        }),
+        addExperiencesImage: builder.mutation<object, FormData>({
+            query: (data) => {
+                return {
+                    url: endPoints.addExperienceImage,
+                    method: "post",
+                    headers: {
+                        Authorization: `Bearer ${getTokenFromLocalStorage()}`,
+                    },
+                    body: data,
+                };
+            },
+            invalidatesTags: ['experiences'],
+        }),
+
+        deleteExperiencesImage: builder.mutation({
+            query: ({ image_id }) => {
+                return {
+                    url: `${endPoints.deleteExperienceImage}${image_id}`,
                     method: "delete",
                     headers: {
                         Authorization: `Bearer ${getTokenFromLocalStorage()}`,
                     },
                 };
             },
-            invalidatesTags: ['experiencesVideos'],
+            invalidatesTags: ['experiences'],
         }),
     })
 })
 export const {
-    useGetAllExperiencesVideosQuery,
-    useAddExperienceVideoMutation,
-    useDeleteExperienceVideoMutation } =
-     experiencesVideosHomeApi
+    useGetAllExperiencesTextsQuery,
+    useAddUpdateExperienceTextMutation,
+    useGetAllExperiencesImageQuery,
+    useAddExperiencesImageMutation,
+    useDeleteExperiencesImageMutation
+} =
+    experiencesAboutApi

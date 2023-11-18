@@ -3,19 +3,15 @@ export interface ISliderHeroProps {
     id?: number | string;
     title_ar: string;
     title_en: string;
-    subTitle_ar: string;
-    subTitle_en: string;
-    content?: [
-        {
-            content_ar: string;
-            content_en: string;
-        }
-    ],
+    subtitle_ar: string;
+    subtitle_en: string;
+    content?:any[],
     content_ar: string;
     content_en: string;
     image: any;
-    profile_link?: string;
-    videos_link?: string;
-    brochure?: string;
-    link?: string
+    profile_link?:any;
+    videos_link?: any;
+    brochure?: any;
+    link?: any,
+    slide_number:number
 }

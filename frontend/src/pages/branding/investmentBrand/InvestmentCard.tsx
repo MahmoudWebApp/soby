@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 interface IProps {
@@ -26,7 +27,7 @@ const InvestmentCard: React.FC<IProps> = (props) => {
             <button className='rounded-3xl bg-soby-gray-blue-gray text-lg text-white px-6 py-3'
                 onClick={() => navigate(props.planUrl)}
             >
-                Book your seat
+               {`${t("Book your seat")}`}
             </button>
         </div>
     )

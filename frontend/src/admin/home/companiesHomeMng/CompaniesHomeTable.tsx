@@ -27,13 +27,13 @@ const CompaniesHomeTable: React.FC<{ companiesData: any[] }> = (props) => {
 
                     <PopconfirmDelete onConfirm={async () => {
                         try {
-                            await deleteCompany({ network_id: record?.id })
+                            await deleteCompany({ company_id: record?.id })
                         } catch (err) {
                             console.log(err);
 
                         }
 
-                    }} title={'Delete Network'} isLoading={isLoading} />
+                    }} title={'Delete Company'} isLoading={isLoading} />
 
                 </Space>
             }

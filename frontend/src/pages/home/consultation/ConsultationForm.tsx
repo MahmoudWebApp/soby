@@ -22,11 +22,11 @@ const ConsultationForm = () => {
                             <Form.Item name={"what-is-required"} className="bg-soby-light-1  p-3 mb-0">
                                 <Radio.Group  >
                                     <Space direction="vertical">
-                                        <Radio value={1}><h5 className="md:text-base  text-xs  text-soby-gray-dark-2">Training Courses</h5></Radio>
-                                        <Radio value={2}><h5 className="md:text-base  text-xs  text-soby-gray-dark-2">Consultation Sessions </h5></Radio>
-                                        <Radio value={3}><h5 className="md:text-base  text-xs  text-soby-gray-dark-2">Keynote Speeches</h5></Radio>
-                                        <Radio value={4}><h5 className="md:text-base  text-xs  text-soby-gray-dark-2">Coaching Sessions</h5></Radio>
-                                        <Radio value={5}><h5 className="md:text-base  text-xs  text-soby-gray-dark-2">Other (Please specify in message)</h5></Radio>
+                                        <Radio value={1}><h5 className={`md:text-base  text-xs  text-soby-gray-dark-2 ${classLang}`}> {`${t("Training Courses")}`}</h5></Radio>
+                                        <Radio value={2}><h5 className={`md:text-base  text-xs  text-soby-gray-dark-2 ${classLang}`}>{`${t("Consultation Sessions")}`} </h5></Radio>
+                                        <Radio value={3}><h5 className={`md:text-base  text-xs  text-soby-gray-dark-2 ${classLang}`}>{`${t("Keynote Speeches")}`}</h5></Radio>
+                                        <Radio value={4}><h5 className={`md:text-base  text-xs  text-soby-gray-dark-2 ${classLang}`}>{`${t("Coaching Sessions")}`}</h5></Radio>
+                                        <Radio value={5}><h5 className={`md:text-base  text-xs  text-soby-gray-dark-2 ${classLang}`}>{`${t("Other (Please specify in message)")}`}</h5></Radio>
                                     </Space>
                                 </Radio.Group>
                             </Form.Item>
@@ -40,8 +40,8 @@ const ConsultationForm = () => {
                             <Form.Item name={"connect-with"} className="bg-soby-light-1  p-3 mb-0">
                                 <Radio.Group  >
                                     <Space direction="vertical">
-                                        <Radio value={1}><h5 className="md:text-base  text-xs  text-soby-gray-dark-2">Person</h5></Radio>
-                                        <Radio value={2}><h5 className="md:text-base  text-xs  text-soby-gray-dark-2">Company</h5></Radio>
+                                        <Radio value={1}><h5 className={`md:text-base  text-xs  text-soby-gray-dark-2 ${classLang}`}>{`${t("Person")}`}</h5></Radio>
+                                        <Radio value={2}><h5 className={`md:text-base  text-xs  text-soby-gray-dark-2 ${classLang}`}>{`${t("Company")}`}</h5></Radio>
 
                                     </Space>
                                 </Radio.Group>
@@ -57,16 +57,18 @@ const ConsultationForm = () => {
                         </h5>
                         <div className="flex flex-col">
                             <Form.Item name={"name"} >
-                                <Input placeholder="Name" className="py-2 bg-white rounded-none border-none shadow-sm" />
+                                <Input placeholder={`${t("Name")}`}
+                                    className="py-2 bg-white rounded-none border-none shadow-sm"
+                                />
                             </Form.Item>
                             <Form.Item name={"email"} >
-                                <Input placeholder="Email" className="py-2 bg-white rounded-none border-none shadow-sm" />
+                                <Input placeholder={`${t("Email")}`} className="py-2 bg-white rounded-none border-none shadow-sm" />
                             </Form.Item>
                             <Form.Item name={"mobile"} >
-                                <Input placeholder="Mobile" className="py-2 bg-white rounded-none border-none shadow-sm" />
+                                <Input placeholder={`${t("Mobile")}`} className="py-2 bg-white rounded-none border-none shadow-sm" />
                             </Form.Item>
                             <Form.Item name={"message"} className="mb-0" >
-                                <Input.TextArea placeholder="Message" className="py-2 bg-white rounded-none border-none shadow-sm" rows={5} />
+                                <Input.TextArea placeholder={`${t("Message")}`} className="py-2 bg-white rounded-none border-none shadow-sm" rows={5} />
                             </Form.Item>
                         </div>
 
@@ -81,18 +83,39 @@ const ConsultationForm = () => {
                             <Form.Item name={"urgency-level"} className="bg-soby-light-1 p-3 mb-0">
                                 <Radio.Group  >
                                     <Space direction="vertical">
-                                        <Radio value={1}><h5 className="md:text-base  text-xs  text-soby-gray-dark-2">Very Urgent (Response Within 24 Hours)</h5></Radio>
-                                        <Radio value={2}><h5 className="md:text-base  text-xs  text-soby-gray-dark-2">Urgent (Response Within 48 Hours)</h5></Radio>
-                                        <Radio value={3}><h5 className="md:text-base  text-xs  text-soby-gray-dark-2">Normal (Response Within Nest Week)</h5></Radio>
+                                        <Radio value={1}><h5 className={`md:text-base  text-xs  text-soby-gray-dark-2 ${classLang}`}>
+
+                                            {`${t(
+                                                "Very Urgent (Response Within 24 Hours)"
+                                            )}`}
+                                        </h5></Radio>
+                                        <Radio value={2}><h5 className={`md:text-base  text-xs  text-soby-gray-dark-2 ${classLang}`}>
+
+                                            {`${t(
+                                                "Urgent (Response Within 48 Hours)"
+                                            )}`}
+                                        </h5></Radio>
+                                        <Radio value={3}><h5 className={`md:text-base  text-xs  text-soby-gray-dark-2 ${classLang}`}>
+
+                                            {`${t(
+                                                "Normal (Response Within Nest Week)"
+                                            )}`}
+                                        </h5></Radio>
 
                                     </Space>
                                 </Radio.Group>
                             </Form.Item>
                         </div>
                         <div className="flex flex-col gap-y-3 ">
-                            <h3 className="text-soby-gray-blue-gray lg:text-xl text-lg tefont-semibold">Schedule a free 30-minute Zoom meeting</h3>
+                            <h3 className="text-soby-gray-blue-gray lg:text-xl text-lg tefont-semibold">
+                                {`${t(
+                                    "Schedule a free 30-minute Zoom meeting"
+                                )}`}
+                            </h3>
                             <button className="w-full text-white rounded-md bg-soby-gray-blue-gray py-3">
-                                Send
+                                {`${t(
+                                    "Send"
+                                )}`}
                             </button>
                         </div>
                     </div>

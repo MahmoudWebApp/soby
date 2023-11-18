@@ -83,7 +83,7 @@ const CompaniesHomeMng = () => {
     }
     return (
         <div className="mt-12 px-12 admin-management">
-            <TitlePageAdmin title={"Home Companies "} />
+            <TitlePageAdmin title={"Home Page Clients "} />
             <Spin spinning={isLoadingData || isLoading}>
                 <div className="flex flex-col gap-y-6">
                     <AddEditModal

@@ -2,7 +2,7 @@ import {
 
     Button,
     Form,
-    Input, Spin,  message
+    Input, Spin, message
 } from "antd";
 import { t } from "i18next";
 
@@ -17,7 +17,7 @@ import { useAddUpdateStepMutation, useGetAllStepsQuery } from "../../../redux/ap
 const StepsBrandingMng = () => {
     const { stepsData, isLoadingData } = useGetAllStepsQuery<{ stepsData: any, isLoadingData: boolean }>(undefined, {
         selectFromResult: ({ data, isLoading }) => ({
-            stepsData: data?.steps,
+            stepsData: data?.data,
             isLoadingData: isLoading
         }),
     });
@@ -40,18 +40,18 @@ const StepsBrandingMng = () => {
     const onFinish = async (values: any) => {
         try {
             await formStepsAdd.validateFields();
-          
 
             const formData = new FormData();
-
+            // formData.append("title_ar", "title_ar");
+            // formData.append("title_en","title_en");
             formData.append("text_one_en", values?.text_one_en);
             formData.append("text_two_en", values?.text_two_en);
             formData.append("text_three_en", values?.text_three_en);
-         
+
             formData.append("text_one_ar", values?.text_one_ar);
             formData.append("text_two_ar", values?.text_two_ar);
             formData.append("text_three_ar", values?.text_three_ar);
-          
+
 
             await addUpdateStep(formData)
 
@@ -59,76 +59,78 @@ const StepsBrandingMng = () => {
             console.log("onEditRow ", e);
         }
     }
-    
+
     return (
         <div className="mt-12 px-12 admin-management">
-            <TitlePageAdmin title={"Branding Steps"} />
+            <TitlePageAdmin title={"Steps"} />
             <div className="flex flex-col gap-y-6 mt-3">
                 <Spin spinning={isLoading || isLoadingData}>
+                    {stepsData&&
+                        <Form layout="vertical" form={formStepsAdd}
+                            name="add-home-banner"
+                            onFinish={onFinish}
+                            className="form-add-student-assessment"
+                            initialValues={stepsData[0]}
+                        >
+                            <div className="grid grid-cols-2 gap-x-12">
+                                <Form.Item label="Step One English" name="text_one_en"
+                                    rules={RulesName({ name: `The Field`, countChar: 1500 })}
 
-                    <Form layout="vertical" form={formStepsAdd}
-                        name="add-home-banner"
-                        onFinish={onFinish}
-                        className="form-add-student-assessment"
-                        initialValues={stepsData}
-                    >
-                        <div className="grid grid-cols-2 gap-x-12">
-                            <Form.Item label="Step One English" name="text_one_en"
-                                rules={RulesName({ name: `The Field`, countChar: 1500 })}
-                          
-                            >
-                                <Input.TextArea />
-                            </Form.Item>
-                            <Form.Item label="Step One Arabic" name="text_one_ar"
-                                rules={RulesName({ name: `The Field`, countChar: 1500 })}
-                           
-                            >
-                                <Input.TextArea />
-                            </Form.Item>
-                        </div>
-                        <div className="grid grid-cols-2 gap-x-12">
-                            <Form.Item label="Step Two English" name="text_two_en"
-                                rules={RulesName({ name: `The Field`, countChar: 1500 })}
-                            
-                            >
-                                <Input.TextArea />
-                            </Form.Item>
-                            <Form.Item label="Step Two Arabic" name="text_two_ar"
-                                rules={RulesName({ name: `The Field`, countChar: 1500 })}
-                        
-                            >
-                                <Input.TextArea />
-                            </Form.Item>
-                        </div>
-                        <div className="grid grid-cols-2 gap-x-12">
-                            <Form.Item label="Step Three English" name="text_three_en"
-                                rules={RulesName({ name: `The Field`, countChar: 1500 })}
-                          
-                            >
-                                <Input.TextArea />
-                            </Form.Item>
-                            <Form.Item label="Step Three Arabic" name="text_three_ar"
-                                rules={RulesName({ name: `The Field`, countChar: 1500 })}
-                            
-                            >
-                                <Input.TextArea />
-                            </Form.Item>
-                        </div>
-                     
+                                >
+                                    <Input.TextArea />
+                                </Form.Item>
+                                <Form.Item label="Step One Arabic" name="text_one_ar"
+                                    rules={RulesName({ name: `The Field`, countChar: 1500 })}
 
+                                >
+                                    <Input.TextArea />
+                                </Form.Item>
+                            </div>
+                            <div className="grid grid-cols-2 gap-x-12">
+                                <Form.Item label="Step Two English" name="text_two_en"
+                                    rules={RulesName({ name: `The Field`, countChar: 1500 })}
+
+                                >
+                                    <Input.TextArea />
+                                </Form.Item>
+                                <Form.Item label="Step Two Arabic" name="text_two_ar"
+                                    rules={RulesName({ name: `The Field`, countChar: 1500 })}
+
+                                >
+                                    <Input.TextArea />
+                                </Form.Item>
+                            </div>
+                            <div className="grid grid-cols-2 gap-x-12">
+                                <Form.Item label="Step Three English" name="text_three_en"
+                                    rules={RulesName({ name: `The Field`, countChar: 1500 })}
+
+                                >
+                                    <Input.TextArea />
+                                </Form.Item>
+                                <Form.Item label="Step Three Arabic" name="text_three_ar"
+                                    rules={RulesName({ name: `The Field`, countChar: 1500 })}
+
+                                >
+                                    <Input.TextArea />
+                                </Form.Item>
+                            </div>
 
 
 
 
 
-                        <Button key="submit" htmlType="submit"
-                            className="
-                     bg-soby-gray-blue-gray
-                      px-12 py-6 flex items-center text-white float-right text-lg">
-                            {`${t("Save & Send")}`}
-                        </Button>
 
-                    </Form>
+
+                            <Button key="submit" htmlType="submit"
+                                className="
+    bg-soby-gray-blue-gray
+     px-12 py-6 flex items-center text-white float-right text-lg">
+                                {`${t("Save & Send")}`}
+                            </Button>
+
+                        </Form>
+                    }
+
                 </Spin>
             </div>
 

@@ -71,12 +71,13 @@ const EditBooksAboutModal: React.FC<{ bookData: any }> = (props) => {
             await formBooksAboutEdit.validateFields();
             const formData = new FormData();
             formData.append("book_id", props.bookData?.id);
-            formData.append("icon", imageFile??null);
+            formData.append("image", imageFile ?? null);
             formData.append("title_ar", values?.title_ar);
             formData.append("title_en", values?.title_en);
             formData.append("content_ar", values?.content_ar);
             formData.append("content_en", values?.content_en);
             formData.append("link", values?.link);
+            formData.append("video_link", values?.video_link);
             await updateBook(formData)
 
 
@@ -150,6 +151,16 @@ const EditBooksAboutModal: React.FC<{ bookData: any }> = (props) => {
                                     </Form.Item>
 
                                 </div>
+                            </div>
+                            <div className="flex flex-col justify-center items-center gap-y-12 mb-6">
+                                <Form.Item label="Video Link" name="video_link"
+                                 
+                                    className="w-full"
+                                >
+                                    <Input.TextArea />
+                                </Form.Item>
+
+
                             </div>
 
                         </div>

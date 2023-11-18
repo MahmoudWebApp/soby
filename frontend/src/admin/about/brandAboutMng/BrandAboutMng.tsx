@@ -86,7 +86,7 @@ const BrandAboutMng = () => {
   }
   return (
     <div className="mt-12 px-12 admin-management">
-      <TitlePageAdmin title={"About Brand"} />
+      <TitlePageAdmin title={"Profile Promise"} />
       <div className="flex flex-col gap-y-6 mt-3">
         <Spin spinning={isLoading || isLoadingData}>
 
@@ -114,8 +114,6 @@ const BrandAboutMng = () => {
                     </Form.Item>
                   </div>
                   <div className="flex gap-x-6">
-
-
                     <Form.Item label="Sub Title English" name="subtitle_en"
                       rules={RulesName({ name: `The Field`, countChar: 50 })}
                       className="w-1/2"

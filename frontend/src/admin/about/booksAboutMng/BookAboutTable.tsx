@@ -8,12 +8,12 @@ import { useDeleteBookMutation } from '../../../redux/api/aboutPageApi/booksAbou
 
 
 const BookAboutTable: React.FC<{ booksData: any[] }> = (props) => {
-const [deleteBook, { isLoading }] = useDeleteBookMutation();
+    const [deleteBook, { isLoading }] = useDeleteBookMutation();
 
     const columns: any[] = [
         {
-            title: "Icon",
-            dataIndex: "icon",
+            title: "Image",
+            dataIndex: "image",
             render: (text: any) => {
                 return <img src={text} className='w-[50px]  mx-auto' alt='' />;
             },
@@ -55,6 +55,25 @@ const [deleteBook, { isLoading }] = useDeleteBookMutation();
                 return <><p className='text-word-dark text-sm'>{text}</p></>;
             },
         },
+        {
+            title: "Video",
+            dataIndex: "video_link",
+            width:"25%",
+            render: (text: any) => {
+                return <> {
+                    text?.includes("https") &&
+                    <iframe className="w-full" height="150"
+                        src={text}
+                        title="YouTube video player" frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; 
+encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen>
+
+                    </iframe>
+                } </>;
+            },
+        },
+
         {
             title: "Action",
             dataIndex: "",

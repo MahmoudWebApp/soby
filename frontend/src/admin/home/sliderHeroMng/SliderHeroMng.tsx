@@ -76,10 +76,10 @@ const SliderHeroMng = () => {
             formData.append("title_en", values?.title_en);
             formData.append("subtitle_ar", values?.subtitle_ar);
             formData.append("subtitle_en", values?.subtitle_en);
-            formData.append("profile_link", values?.profile_link ?? null);
-            formData.append("videos_link", values?.videos_link ?? null);
-            formData.append("brochure", values?.brochure ?? null);
-            formData.append("link", values?.link ?? null);
+            formData.append("profile_link", values?.profile_link );
+            formData.append("videos_link", values?.videos_link );
+            formData.append("brochure", values?.brochure );
+            formData.append("link", values?.link );
             formData.append("image", imageFile);
             formData.append("content", JSON.stringify(values?.content))
 
@@ -118,26 +118,26 @@ const SliderHeroMng = () => {
                                 <div className="grid grid-cols-2 gap-x-6">
                                     <div className="flex flex-col ">
                                         <Form.Item label="Title English" name="title_en"
-                                            rules={RulesName({ name: `The Field`, countChar: 64 })}
+                                            rules={RulesName({ name: `The Field`, countChar:128 })}
 
                                         >
                                             <Input />
                                         </Form.Item>
                                         <Form.Item label="Title Arabic" name="title_ar"
-                                            rules={RulesName({ name: `The Field`, countChar: 64 })}
+                                            rules={RulesName({ name: `The Field`, countChar:128 })}
 
                                         >
                                             <Input />
                                         </Form.Item>
 
                                         <Form.Item label="Sub Title English" name="subtitle_en"
-                                            rules={RulesName({ name: `The Field`, countChar: 64 })}
+                                            rules={RulesName({ name: `The Field`, countChar: 128})}
 
                                         >
                                             <Input />
                                         </Form.Item>
                                         <Form.Item label="Sub Title Arabic" name="subtitle_ar"
-                                            rules={RulesName({ name: `The Field`, countChar: 64 })}
+                                            rules={RulesName({ name: `The Field`, countChar: 128 })}
 
                                         >
                                             <Input />
@@ -161,25 +161,25 @@ const SliderHeroMng = () => {
 
 
                                         >
-                                            <Input />
+                                            <Input.TextArea />
                                         </Form.Item>
                                         <Form.Item label="Videos Button Url" name="videos_link"
 
 
                                         >
-                                            <Input />
+                                            <Input.TextArea />
                                         </Form.Item>
                                         <Form.Item label="Brochure Button Url" name="brochure"
 
 
                                         >
-                                            <Input />
+                                            <Input.TextArea />
                                         </Form.Item>
                                         <Form.Item label="Link Button Url" name="link"
 
 
                                         >
-                                            <Input />
+                                            <Input.TextArea />
                                         </Form.Item>
                                     </div>
                                 </div>

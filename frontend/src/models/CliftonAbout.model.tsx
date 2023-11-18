@@ -8,4 +8,5 @@ export interface ICliftonAboutProps {
     content_ar: string;
     content_en: string;
     image:string;
+    content:any[]
 }

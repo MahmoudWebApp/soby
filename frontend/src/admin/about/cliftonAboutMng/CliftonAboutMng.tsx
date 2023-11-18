@@ -87,7 +87,7 @@ const CliftonAboutMng = () => {
   }
   return (
     <div className="mt-12 px-12 admin-management">
-      <TitlePageAdmin title={"About Clifton"} />
+      <TitlePageAdmin title={"Profile Strengths"} />
       <div className="flex flex-col gap-y-6 mt-3">
         <Spin spinning={isLoading || isLoadingData}>
 

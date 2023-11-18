@@ -1,4 +1,4 @@
-import { Space, Table, Tag } from 'antd';
+import { Space, Table } from 'antd';
 import TextEnAr from '../../../component/TextEnAr';
 import PopconfirmDelete from '../../../component/popconfirmDelete/PopconfirmDelete';
 import EditBlogModal from './EditBlogModal';
@@ -19,14 +19,14 @@ const BlogTable: React.FC<{ postsData: any[] }> = (props) => {
                 return <img src={text} className='w-[50px]  mx-auto' alt='' />;
             },
         },
-        {
-            title: <TextEnAr t1={'Button'} t2={'Link'} />,
-            dataIndex: "link",
-            width: "5%",
-            render: (text: any) => {
-                return <>{text ? <Tag color='green'>Have Url</Tag> : <Tag color='red'>No Have Url</Tag>}</>;
-            },
-        },
+        // {
+        //     title: <TextEnAr t1={'Button'} t2={'Link'} />,
+        //     dataIndex: "link",
+        //     width: "5%",
+        //     render: (text: any) => {
+        //         return <>{text ? <Tag color='green'>Have Url</Tag> : <Tag color='red'>No Have Url</Tag>}</>;
+        //     },
+        // },
         {
             title: <TextEnAr t1={'Title'} t2={'English'} />,
             dataIndex: "title_en",

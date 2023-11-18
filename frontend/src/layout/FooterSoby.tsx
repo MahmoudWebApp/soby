@@ -4,6 +4,7 @@ import logo from "../assets/svg/soby logo.svg";
 
 import SocialMenu from "../component/SocialMenu";
 import MainFooterMenu from "../component/MainFooterMenu";
+import { t } from "i18next";
 const FooterSoby = () => {
     return (
         <div className="grid grid-row-2">
@@ -15,13 +16,15 @@ const FooterSoby = () => {
                         </NavLink>
                         <div>
                             <p className="text-soby-gray-blue-gray text-base ">
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                                {`${t("Mohamed Sobhi Aq Baiq is a management consultant, certified trainer and famous author, who offers 25 years of experience and the outcome of studying his huge library in workshops with practical and applied content, in a fun interactive way, helping participants not only digest science but also apply it in their careers, in a way that helps them achieve the highest gains and the best positions.")}`}
                             </p>
                         </div>
                     </div>
                     <div className="flex flex-col gap-y-3">
                         <h4 className="text-soby-yellow-light text-2xl font-semibold">
-                            QUICK LINKS
+                            
+                            {`${t("QUICK LINKS")}`}
+
                         </h4>
                         <div className=" flex flex-col gap-y-3">
                             <MainFooterMenu classesText={"text-lg"} />
@@ -29,12 +32,17 @@ const FooterSoby = () => {
                     </div>
                     <div className="flex flex-col gap-y-3">
                         <h4 className="text-soby-yellow-light text-2xl font-semibold">
-                            CONTACT US
+                              {`${t("CONTACT US")}`}
                         </h4>
                         <div className="flex flex-col gap-y-3 text-soby-gray-blue-gray text-lg">
-                            <p>Phone: ‭+971 52 994 5335‬</p>
+                            <p>
+                            {`${t("Phone: ‭+971 52 994 5335‬")}`}
+
+                            </p>
                             <p>hi@asksoby.com</p>
-                            <p>Address: United Arabi Emirates, Dubai</p>
+                            <p>
+                            {`${t("Address: United Arabi Emirates, Dubai")}`}
+                            </p>
 
                         </div>
                         <div className=" flex gap-x-1 items-center md:mt-6 mt-3">
@@ -48,9 +56,13 @@ const FooterSoby = () => {
 
                 <div className="flex md:flex-row flex-col justify-between lg:w-2/3 w-full">
                     <div className=" lg:text-2xl text-xl text-white ">
-                        SOBY© 2023 COPYRIGHT
+                        
+                        {`${t("SOBY© 2023 COPYRIGHT")}`}
                     </div>
-                    <div className="lg:text-xl text-lg text-white">Privacy Policy</div>
+                    <div className="lg:text-xl text-lg text-white">
+                      
+                        {`${t("Privacy Policy")}`}
+                        </div>
                 </div>
             </div>
         </div>

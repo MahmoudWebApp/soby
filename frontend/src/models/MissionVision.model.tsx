@@ -7,12 +7,15 @@ export interface IMissionVisionProps {
     vision_subtitle_ar: string;
     vision_content_en: string;
     vision_content_ar: string;
+    vision_content:any[];
     mission_title_en: string;
     mission_title_ar: string;
     mission_subtitle_en: string;
     mission_subtitle_ar: string;
     mission_content_en: string;
     mission_content_ar: string;
+    mission_content:any[];
+    
   
 
 }

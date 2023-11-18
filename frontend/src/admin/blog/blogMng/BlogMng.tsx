@@ -20,7 +20,7 @@ import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 const TrainingMng = () => {
     const { blogData, isLoadingData } = useGetAllPostsQuery<{ blogData: any[], isLoadingData: boolean }>(undefined, {
         selectFromResult: ({ data, isLoading }) => ({
-            blogData: data?.blog,
+            blogData: data?.data,
             isLoadingData: isLoading
         }),
     });
@@ -78,7 +78,7 @@ const TrainingMng = () => {
             formData.append("title_ar", values?.title_ar);
             formData.append("title_en", values?.title_en);
             formData.append("content", JSON.stringify(values?.content))
-            formData.append("link", values?.link);
+            // formData.append("link", values?.link);
             await addPost(formData)
 
         } catch (e) {
@@ -131,12 +131,12 @@ const TrainingMng = () => {
 
                                         </div>
                                         <div className="flex flex-col">
-                                            <Form.Item label="Button Url" name="link"
+                                            {/* <Form.Item label="Button Url" name="link"
                                                 rules={RulesName({ name: `The Field`, countChar: 1024 })}
 
                                             >
                                                 <Input.TextArea />
-                                            </Form.Item>
+                                            </Form.Item> */}
 
                                             <Form.Item>
                                                 <Upload listType="picture" maxCount={1}
@@ -155,7 +155,7 @@ const TrainingMng = () => {
                                                             <Form.Item
                                                                 {...restField}
                                                                 name={[name, 'content_en']}
-                                                                rules={[{ required: true },
+                                                                rules={[{ required: true , message:"The Field is Required"},
                                                                 { max: 1024, message: `${t("Content English")} ${t("must be less than 1024 characters.")}` }
 
                                                                 ]}
@@ -166,7 +166,7 @@ const TrainingMng = () => {
                                                             <Form.Item
                                                                 {...restField}
                                                                 name={[name, 'content_ar']}
-                                                                rules={[{ required: true },
+                                                                rules={[{ required: true , message:"The Field is Required"},
                                                                 { max: 1024, message: `${t("Content Arabic")} ${t("must be less than 1024 characters.")}` }
                                                                 ]}
                                                                 className="w-[47%] mb-0"

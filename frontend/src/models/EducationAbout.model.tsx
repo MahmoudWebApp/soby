@@ -5,9 +5,7 @@ export interface IEducationProps {
     title_en: string;
     subtitle_ar: string;
     subtitle_en: string;
-    content_one_ar: string;
-    content_one_en: string;
-    content_two_ar: string;
-    content_two_en: string;
+    content_one: string;
+    content_two: string;
     video_link: string;
 }

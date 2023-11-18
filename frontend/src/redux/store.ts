@@ -2,7 +2,6 @@ import { postsApi } from './api/blogPageApi/blogApi';
 import { networkPlayListsApi } from './api/networkPageApi/networkPlayListApi';
 import { coursesApi } from './api/coursesPageApi/coursesApi';
 import { trainingApi } from './api/trainingPageApi/trainingApi';
-import { experiencesVideosHomeApi } from './api/aboutPageApi/experiencesAboutApi';
 import { educationAboutApi } from './api/aboutPageApi/educationAboutApi';
 import { cliftonAboutApi } from './api/aboutPageApi/cliftonAboutApi';
 import { brandAboutApi } from './api/aboutPageApi/brandAboutApi';
@@ -26,6 +25,10 @@ import { stepsBrandingApi } from './api/brandingPageApi/stepsBrandingApi';
 import { sufferBrandingApi } from './api/brandingPageApi/sufferBrandingApi';
 import { landingPageBrandingApi } from './api/brandingPageApi/landingPageBrandingApi';
 import { profilePdfApi } from './api/aboutPageApi/profilePdfApi';
+import { formAppointmentsApi } from './api/formAppointmentsApi/FormAppointmentsApi';
+import { lessonsBrandingApi } from './api/brandingPageApi/lessonsBrandingApi';
+import { experiencesAboutApi } from './api/aboutPageApi/experiencesAboutApi';
+import { investmentBrandApi } from './api/brandingPageApi/investmentBrandApi';
 
 
 export const store = configureStore({
@@ -45,7 +48,7 @@ export const store = configureStore({
         [brandAboutApi.reducerPath]: brandAboutApi.reducer,
         [cliftonAboutApi.reducerPath]: cliftonAboutApi.reducer,
         [educationAboutApi.reducerPath]: educationAboutApi.reducer,
-        [experiencesVideosHomeApi.reducerPath]: experiencesVideosHomeApi.reducer,
+        [experiencesAboutApi.reducerPath]: experiencesAboutApi.reducer,
         [booksAboutApi.reducerPath]: booksAboutApi.reducer,
         [profilePdfApi.reducerPath]:profilePdfApi.reducer,
         // Branding Page
@@ -54,12 +57,15 @@ export const store = configureStore({
         [stepsBrandingApi.reducerPath]: stepsBrandingApi.reducer,
         [sufferBrandingApi.reducerPath]: sufferBrandingApi.reducer,
         [landingPageBrandingApi.reducerPath]:landingPageBrandingApi.reducer,
+        [lessonsBrandingApi.reducerPath]:lessonsBrandingApi.reducer,
+        [investmentBrandApi.reducerPath]:investmentBrandApi.reducer,
         // Other Pages
         [trainingApi.reducerPath]: trainingApi.reducer,
         [coursesApi.reducerPath]: coursesApi.reducer,
         [networkPlayListsApi.reducerPath]: networkPlayListsApi.reducer,
         [postsApi.reducerPath]: postsApi.reducer,
-        [formGiftsApi.reducerPath]: formGiftsApi.reducer
+        [formGiftsApi.reducerPath]: formGiftsApi.reducer,
+        [formAppointmentsApi.reducerPath]:formAppointmentsApi.reducer,
 
 
     },
@@ -78,7 +84,7 @@ export const store = configureStore({
             brandAboutApi.middleware,
             cliftonAboutApi.middleware,
             educationAboutApi.middleware,
-            experiencesVideosHomeApi.middleware,
+            experiencesAboutApi.middleware,
             booksAboutApi.middleware,
             trainingApi.middleware,
             coursesApi.middleware,
@@ -90,7 +96,10 @@ export const store = configureStore({
             stepsBrandingApi.middleware,
             sufferBrandingApi.middleware,
             landingPageBrandingApi.middleware,
-            profilePdfApi.middleware
+            profilePdfApi.middleware,
+            formAppointmentsApi.middleware,
+            lessonsBrandingApi.middleware,
+            investmentBrandApi.middleware
 
         ]),
 })

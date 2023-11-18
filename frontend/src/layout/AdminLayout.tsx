@@ -58,37 +58,38 @@ const AdminLayout: React.FC = () => {
             getItem('About', '/admin/home/about', <BiInfoSquare />),
             getItem('Testimonials', '/admin/home/testimonials', <IoPeopleOutline />),
             getItem('Banner', '/admin/home/banner', <PiFlagBannerLight />),
-            getItem('Companies', '/admin/home/companies', <BiBuilding />),
+            getItem('Clients', '/admin/home/companies', <BiBuilding />),
             getItem('Networks', '/admin/home/networks', <LiaNetworkWiredSolid />),
 
         ]
         ),
-        getItem('About', '/admin/about', <LuBadgeInfo />, [
+        getItem('Profile', '/admin/about', <LuBadgeInfo />, [
             getItem('Vision& Mission', '/admin/about/vision-mission', <TiMessageTyping />),
             getItem('Profile Pdf', '/admin/about/profile-pdf', <HomeOutlined />),
-            getItem('Story', '/admin/about/story', <TbBrandStorybook />),
-            getItem('Brand', '/admin/about/brand', <TbBrandAbstract />),
-            getItem('Clifton', '/admin/about/clifton', <TbBrandCarbon />),
+            getItem('Story', '/admin/about/brand', <TbBrandStorybook />),
+            getItem('Promise', '/admin/about/promise', <TbBrandAbstract />),
+            getItem('Strengths', '/admin/about/strengths', <TbBrandCarbon />),
             getItem('Education', '/admin/about/education', <TbBrandElectronicArts />),
-            getItem('Experience', '/admin/about/experience', <TbBrandElastic />),
+            getItem('Professional Path', '/admin/about/experience', <TbBrandElastic />),
             getItem('Books', '/admin/about/books', <LiaBookSolid />),
 
         ]
         ),
-        getItem('Branding', '/admin/branding', <TbBrandBooking />, [
+        getItem('Persona', '/admin/branding', <TbBrandBooking />, [
             getItem('LandingPage', '/admin/branding/landing-page', <TbHelicopterLanding />),
             getItem('Suffer', '/admin/branding/Suffer', <Tb360 />),
             getItem('Steps', '/admin/branding/steps', <PiStepsLight />),
             getItem('Trainers', '/admin/branding/trainers', <FaChalkboardTeacher />),
             getItem('FAQ', '/admin/branding/faq', <FaQuestion />),
             getItem('Lessons', '/admin/branding/lessons', <MdOutlinePlayLesson />),
+            getItem('Investment', '/admin/branding/investments', <MdOutlinePlayLesson />),
         ]
         ),
-        getItem('Training', 'admin/training', <PiExamLight />,
+        getItem('Masterclass', 'admin/training', <PiExamLight />,
         ),
-        getItem('Blog', 'admin/blog', <TbBrandBlogger />,
+        getItem('Musings', 'admin/blog', <TbBrandBlogger />,
         ),
-        getItem('Courses', 'admin/courses', <BsJournalBookmarkFill />,
+        getItem('Freebies', 'admin/courses', <BsJournalBookmarkFill />,
         ),
         getItem('Networks PlayList', 'admin/networks-playList', <MdOutlinePlaylistPlay />,
         ),
@@ -119,7 +120,7 @@ const AdminLayout: React.FC = () => {
     }, [windowWidth]);
 
     return (
-        <Layout style={{ minHeight: '100vh' }}>
+        <Layout style={{ minHeight: '100vh' }} dir='ltr'>
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
                 <div className='flex flex-col py-12 justify-between gap-y-12'>
                     <div className="flex items-center justify-center  ">

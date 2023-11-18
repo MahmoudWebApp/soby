@@ -19,7 +19,7 @@ import { IBooksAboutProps } from "../../../models/BookAbout.model";
 
 const BooksAboutMng = () => {
     const { books, isLoadingData } = useGetAllBooksQuery<{ books: IBooksAboutProps[], isLoadingData: boolean }>(undefined, {
-        selectFromResult: ({ data , isLoading }) => ({
+        selectFromResult: ({ data, isLoading }) => ({
             books: data?.books,
             isLoadingData: isLoading
         }),
@@ -79,11 +79,12 @@ const BooksAboutMng = () => {
             await formBookAboutAdd.validateFields();
 
             const formData = new FormData();
-            formData.append("icon", imageFile);
+            formData.append("image", imageFile);
             formData.append("title_ar", values?.title_ar);
             formData.append("title_en", values?.title_en);
             formData.append("content_ar", values?.content_ar);
             formData.append("content_en", values?.content_en);
+            formData.append("video_link", values?.video_link);
             formData.append("link", values?.link);
             await addBook(formData)
 
@@ -95,7 +96,7 @@ const BooksAboutMng = () => {
         <>
 
             <div className="mt-12 px-12 admin-management">
-                <TitlePageAdmin title={"About Books"} />
+                <TitlePageAdmin title={"Profile Books"} />
                 <Spin spinning={isLoading || isLoadingData}>
 
 
@@ -163,7 +164,16 @@ const BooksAboutMng = () => {
 
                                         </div>
                                     </div>
+                                    <div className="flex flex-col justify-center items-center gap-y-12 mb-6">
+                                        <Form.Item label="Video Link" name="video_link"
+                                      
+                                            className="w-full"
+                                        >
+                                            <Input.TextArea />
+                                        </Form.Item>
+                                   
 
+                                    </div>
                                 </div>
 
 

@@ -11,7 +11,7 @@ interface IProps {
 const TrainerCard: React.FC<IProps> = (props) => {
 const navigate =useNavigate()
     return (
-        <div className="flex  gap-x-6 p-3 rounded-sm shadow-sm ">
+        <div className="flex md:flex-row flex-col gap-6 p-3 rounded-sm shadow-sm ">
             <img src={props.imgSrc} alt=""
                 className="w-[304px] h-[304px] rounded-full object-cover "
                 style={{ border: "5px solid #E8A042" }}
@@ -32,7 +32,7 @@ const navigate =useNavigate()
                 </div>
 
             </div>
-             <button className='rounded-3xl bg-soby-gray-blue-gray text-base w-fit text-white px-4 py-2'
+             <button className='md:mt-0 mt-3 rounded-3xl bg-soby-gray-blue-gray text-base w-fit text-white px-4 py-2'
                 onClick={() => navigate(props.profileUrl)}
             >
                 Find out more

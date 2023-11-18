@@ -2,12 +2,14 @@ import {
 
     Button,
     Form,
-    Input, Spin, Upload, UploadFile, UploadProps, message
+    Input, Spin,
+    //  Upload, UploadFile, UploadProps, 
+     message
 } from "antd";
 import { t } from "i18next";
 
 import { RulesName } from "../../../utils/RulesValidation";
-import { useEffect, useState } from "react";
+import { useEffect,} from "react";
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import TitlePageAdmin from "../../../component/TitlePageAdmin";
 import { useAddUpdateAboutHomeDataMutation, useGetAboutHomeDataQuery } from "../../../redux/api/homePageApi/aboutHomeApi";
@@ -16,56 +18,56 @@ import "video-react/dist/video-react.css";
 
 
 const HomeAboutMng = () => {
-    const { aboutHomeData, isLoadingData } = useGetAboutHomeDataQuery<{ aboutHomeData: any , isLoadingData:boolean}>(undefined, {
+    const { aboutHomeData, isLoadingData } = useGetAboutHomeDataQuery<{ aboutHomeData: any, isLoadingData: boolean }>(undefined, {
         selectFromResult: ({ data, isLoading }) => ({
             aboutHomeData: data?.about,
             isLoadingData: isLoading
         }),
     });
     const [addUpdateAboutHome, { isSuccess, isLoading }] = useAddUpdateAboutHomeDataMutation();
-    const [imageFile, setImageFile] = useState<any>();
+    // const [imageFile, setImageFile] = useState<any>();
     const [formHomeAboutAdd] = Form.useForm();
-    const [fileList, setFileList] = useState<UploadFile[]>([]);
+    // const [fileList, setFileList] = useState<UploadFile[]>([]);
     useEffect(() => {
         if (isSuccess) {
             formHomeAboutAdd.resetFields();
-            setFileList([]);
-            setImageFile(null)
-            formHomeAboutAdd.setFieldsValue(aboutHomeData); 
+            // setFileList([]);
+            // setImageFile(null)
+            formHomeAboutAdd.setFieldsValue(aboutHomeData);
         }
     }, [aboutHomeData, formHomeAboutAdd, isSuccess])
 
     useEffect(() => {
         if (isSuccess) {
-        message.success("operation success") 
+            message.success("operation success")
         }
-    }, [ isSuccess])
+    }, [isSuccess])
 
-    const propsImage: UploadProps = {
-        onChange(info) {
-            setFileList(info.fileList);
-            setImageFile(info.file)
-        },
-        onRemove: file => {
-            const index = fileList.indexOf(file);
-            const newFileList = fileList.slice();
-            newFileList.splice(index, 1);
-            setFileList(newFileList);
-        },
-        beforeUpload: file => {
-            setFileList([...fileList, file]);
-            return false;
-        },
-        fileList,
-        progress: {
-            strokeColor: {
-                '0%': '#108ee9',
-                '100%': '#87d068',
-            },
-            strokeWidth: 3,
-            format: (percent) => percent && `${parseFloat(percent.toFixed(2))}%`,
-        },
-    };
+    // const propsImage: UploadProps = {
+    //     onChange(info) {
+    //         setFileList(info.fileList);
+    //         setImageFile(info.file)
+    //     },
+    //     onRemove: file => {
+    //         const index = fileList.indexOf(file);
+    //         const newFileList = fileList.slice();
+    //         newFileList.splice(index, 1);
+    //         setFileList(newFileList);
+    //     },
+    //     beforeUpload: file => {
+    //         setFileList([...fileList, file]);
+    //         return false;
+    //     },
+    //     fileList,
+    //     progress: {
+    //         strokeColor: {
+    //             '0%': '#108ee9',
+    //             '100%': '#87d068',
+    //         },
+    //         strokeWidth: 3,
+    //         format: (percent) => percent && `${parseFloat(percent.toFixed(2))}%`,
+    //     },
+    // };
 
     const onFinish = async (values: any) => {
         try {
@@ -76,7 +78,7 @@ const HomeAboutMng = () => {
             formData.append("title_en", values?.title_en);
             formData.append("subtitle_ar", values?.subtitle_ar);
             formData.append("subtitle_en", values?.subtitle_en);
-            formData.append("video_link", imageFile);
+            formData.append("video_link", values?.video_link);
 
             await addUpdateAboutHome(formData)
 
@@ -131,7 +133,7 @@ const HomeAboutMng = () => {
                                     </Form.Item>
                                 </div>
                             </div>
-                            <div className="flex justify-center gap-x-12 mb-6">
+                            {/* <div className="flex justify-center gap-x-12 mb-6">
                                 <Form.Item>
                                     <Upload listType="picture" maxCount={1}
                                         accept="video/*"  {...propsImage} >
@@ -141,6 +143,22 @@ const HomeAboutMng = () => {
                                 <video controls controlsList=" timeline volume"
                                     src={aboutHomeData?.video_link}
                                     className="w-[200px]  h-[200px] md:rounded-3xl rounded-lg border bg-[#ccc]" />
+                            </div> */}
+                            <div className="flex flex-col justify-center items-center gap-y-12 mb-6">
+                                <Form.Item label="Video Link" name="video_link"
+                                    rules={RulesName({ name: `The Field`, countChar: 1500 })}
+                                    className="w-full"
+                                >
+                                    <Input.TextArea />
+                                </Form.Item>
+                                <iframe className="w-[500px] sm:w-full" height="392"
+                                    src={aboutHomeData?.video_link}
+                                    title="YouTube video player" frameBorder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowFullScreen>
+
+                                </iframe>
                             </div>
 
                         </div>

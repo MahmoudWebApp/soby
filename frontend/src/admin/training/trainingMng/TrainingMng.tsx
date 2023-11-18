@@ -81,13 +81,13 @@ const TrainingMng = () => {
                                 className="form-add-student-assessment"
                             >
                              
-                                            <Form.Item label="Title English" name="title_ar"
+                                            <Form.Item label="Title English" name="title_en"
                                                 rules={RulesName({ name: `The Field`, countChar: 50 })}
 
                                             >
                                                 <Input />
                                             </Form.Item>
-                                            <Form.Item label="Title Arabic" name="title_en"
+                                            <Form.Item label="Title Arabic" name="title_ar"
                                                 rules={RulesName({ name: `The Field`, countChar: 50 })}
 
                                             >

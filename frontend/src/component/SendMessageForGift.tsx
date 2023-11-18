@@ -55,14 +55,14 @@ const SendMessageForGiftModal = () => {
             <div className="flex flex-col gap-y-6">
                 <AddEditModal
                     btnText={
-                        <button className={`bg-soby-yellow-light rounded-3xl xl:px-16 xl:py-3 md:py-2 md:px-8  py-1 px-3`}
+                        <button className={`bg-soby-yellow-light rounded-3xl xl:px-12 xl:py-2 md:py-2 md:px-8  py-1 px-3`}
                             onClick={() => setIsModalVisible(true)}
                         >
                             <span className={`text-soby-light-1 xl:text-lg md:text-sm  sm:text-xs text-[.7rem]`}>
-                                {`${t("Claim Your Thank-You Gift")}`}
+                                {`${t("Unwrap Your Gift")}`}
                             </span>
                         </button>}
-                    title={`${t("Claim Your Thank-You Gift")}`}
+                    title={`${t("Unwrap Your Gift")}`}
                     width={"600px"}
                     isModalVisible={isModalVisible}
                     setIsModalVisible={setIsModalVisible}

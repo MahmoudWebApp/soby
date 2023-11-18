@@ -35,9 +35,9 @@ const EducationAboutMng = () => {
   }, [educationData, formEducationAboutAdd, isSuccess])
   useEffect(() => {
     if (isSuccess) {
-        message.success("operation success")
+      message.success("operation success")
     }
-}, [isSuccess])
+  }, [isSuccess])
 
   const onFinish = async (values: any) => {
     try {
@@ -49,8 +49,6 @@ const EducationAboutMng = () => {
       formData.append("title_ar", values?.title_ar);
       formData.append("subtitle_ar", values?.subtitle_ar);
       formData.append("subtitle_en", values?.subtitle_en);
-
-
       await addUpdateMissionVision(formData)
 
 
@@ -60,16 +58,20 @@ const EducationAboutMng = () => {
   }
   return (
     <div className="mt-12 px-12 admin-management">
-      <TitlePageAdmin title={"About Education"} />
+      <TitlePageAdmin title={"Profile Education"} />
       <div className="flex flex-col gap-y-6 mt-3">
-        <Spin spinning={isLoading ||isLoadingData}>
+        <Spin spinning={isLoading || isLoadingData}>
 
           {educationData &&
             <Form layout="vertical" form={formEducationAboutAdd}
               name="add-home-about"
               onFinish={onFinish}
               className="form-add-student-assessment"
-              initialValues={educationData}
+              initialValues={{
+                ...educationData,
+                content_one: JSON.parse(educationData?.content_one),
+                content_two: JSON.parse(educationData?.content_two)
+              }}
             >
               <div className="grid grid-row-3 gap-y-6">
                 <div>
